@@ -128,6 +128,16 @@ define(function(require) {
             }, this));
 
             this.evaluateCompletion();
+
+            ///// Audio /////
+            if (this.model.get('_audio')) {
+                // Determine which filetype to play
+                if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/ogg')) this.audioFile = currentItem._audio.ogg;
+                if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/mpeg')) this.audioFile = currentItem._audio.mp3;
+                // Trigger audio
+                Adapt.trigger('audio:playAudio', this.audioFile, this.model.get('_id'), this.model.get('_audio')._channel);
+            }
+            ///// End of Audio /////
         },
 
         getCurrentItem: function(index) {

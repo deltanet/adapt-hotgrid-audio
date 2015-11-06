@@ -10,6 +10,17 @@
         "body":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis.",
         "instruction":"",
         "_columns":3,
+        "_audio": {
+            "_isEnabled": true,
+            "_showControls": true,
+            "_autoplay": true,
+            "_channel": 0,
+            "_location": "top-right",
+            "_media": {
+                "mp3": "course/en/audio/MAC_M1_04.mp3",
+                "ogg": "course/en/audio/MAC_M1_04.ogg"
+            }
+        },
         "_items": [
             {
                 "title": "Grid Item 1",
@@ -24,6 +35,10 @@
                  "_itemGraphic": {
                     "src": "course/en/images/c-15.png",
                     "alt": "alt text"
+                },
+                "_audio": {
+                    "mp3": "course/en/audio/MAC_M1_04_1.mp3",
+                    "ogg": "course/en/audio/MAC_M1_04_1.ogg"
                 }
             },
             {
@@ -39,6 +54,10 @@
                  "_itemGraphic": {
                     "src": "course/en/images/c-15.png",
                     "alt": "alt text"
+                },
+                "_audio": {
+                    "mp3": "course/en/audio/MAC_M1_04_2.mp3",
+                    "ogg": "course/en/audio/MAC_M1_04_2.ogg"
                 }
             },
             {
@@ -54,36 +73,10 @@
                  "_itemGraphic": {
                     "src": "course/en/images/c-15.png",
                     "alt": "alt text"
-                }
-            },
-            {
-                "title": "Grid Item 4",
-                "body": "This is display text 1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
-                "_graphic": {
-                    "src": "course/en/images/c-15.png",
-                    "srcHover":"course/en/images/c-15-hover.png",
-                    "srcVisited":"course/en/images/c-15-visited.png",
-                    "alt": "",
-                    "title": "Item Title 4"
                 },
-                 "_itemGraphic": {
-                    "src": "course/en/images/c-15.png",
-                    "alt": "alt text"
-                }
-            },
-            {
-                "title": "Grid Item 5",
-                "body": "This is display text 1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
-                "_graphic": {
-                    "src": "course/en/images/c-15.png",
-                    "srcHover":"course/en/images/c-15-hover.png",
-                    "srcVisited":"course/en/images/c-15-visited.png",
-                    "alt": "",
-                    "title": "Item Title 5"
-                },
-                 "_itemGraphic": {
-                    "src": "course/en/images/c-15.png",
-                    "alt": "alt text"
+                "_audio": {
+                    "mp3": "course/en/audio/MAC_M1_04_3.mp3",
+                    "ogg": "course/en/audio/MAC_M1_04_3.ogg"
                 }
             }
         ]

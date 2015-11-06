@@ -1,8 +1,8 @@
 {
   "name": "adapt-hotgrid",
   "version": "2.0.0",
-  "framework": "^2.0.0",
-  "homepage": "https://github.com/cgkineo/adapt-hotgrid",
+  "framework": "2.0.4",
+  "homepage": "https://github.com/deltanet/adapt-hotgrid-audio",
   "displayName": "Hotgrid",
   "component": "hotgrid",
   "assetFields": [
@@ -12,7 +12,8 @@
     "_items[]._itemGraphic.src"
   ],
   "authors": [
-    "Salamat Ali <Mohammed.SalamatAli@kineo.com>"
+    "Salamat Ali <Mohammed.SalamatAli@kineo.com>",
+    "Robert Peek <robert@delta-net.co.uk>"
   ],
   "description": "A component that displays selectable images in a grid format.",
   "main": "/js/adapt-hotgrid.js",
@@ -20,5 +21,5 @@
     "adapt-plugin",
     "adapt-component"
   ],
-  "license": "GPLv3"
+  "license": "GPL-3.0"
 }
