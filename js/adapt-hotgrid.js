@@ -21,6 +21,9 @@ define(function(require) {
             }, this);
             
             this.listenTo(Adapt, 'device:changed', this.resizeControl);
+
+            // Listen for text change on audio extension
+            this.listenTo(Adapt, "audio:changeText", this.replaceText);
             
             this.setDeviceSize();
         },
@@ -40,6 +43,10 @@ define(function(require) {
             this.$('.hotgrid-widget').imageready(_.bind(function() {
                 this.setReadyStatus();
             }, this));
+
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+                this.replaceText(Adapt.audio.textSize);
+            }
         },
 
         resizeControl: function() {
@@ -114,9 +121,19 @@ define(function(require) {
                 currentItem.visited = true;
             }
 
+            // Set popup text to default full size
+            var popupObject_title = currentItem.title;
+            var popupObject_body = currentItem.body;
+
+            // If reduced text is enabled and selected
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+                popupObject_title = currentItem.titleReduced;
+                popupObject_body = currentItem.bodyReduced;
+            }
+
             Adapt.trigger("notify:popup", {
-                title: currentItem.title,
-                body: "<div class='hotgrid-notify-body'>" + currentItem.body +
+                title: popupObject_title,
+                body: "<div class='hotgrid-notify-body'>" + popupObject_body +
                     "</div><img class='hotgrid-notify-graphic' src='" +
                     currentItem._itemGraphic.src + "' alt='" +
                     currentItem._itemGraphic.alt + "'/>"
@@ -154,6 +171,31 @@ define(function(require) {
             if (this.getVisitedItems().length == this.model.get('_items').length) {
                 this.setCompletionStatus();
             }
+        },
+
+        // Reduced text
+        replaceText: function(value) {
+            // If enabled
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+                // Change component title and body
+                if(value == 0) {
+                    this.$('.component-title-inner').html(this.model.get('displayTitle')).a11y_text();
+                    this.$('.component-body-inner').html(this.model.get('body')).a11y_text();
+                } else {
+                    this.$('.component-title-inner').html(this.model.get('displayTitleReduced')).a11y_text();
+                    this.$('.component-body-inner').html(this.model.get('bodyReduced')).a11y_text();
+                }
+                // Change each items title and body
+                for (var i = 0; i < this.model.get('_items').length; i++) {
+                    if(value == 0) {
+                        this.$('.notify-popup-title-inner').eq(i).html(this.model.get('_items')[i].title);
+                        this.$('.notify-popup-body-inner').eq(i).html(this.model.get('_items')[i].body).a11y_text();
+                    } else {
+                        this.$('.notify-popup-title-inner').eq(i).html(this.model.get('_items')[i].titleReduced);
+                        this.$('.notify-popup-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced).a11y_text();
+                    }
+                }
+            }
         }
         
     });
@@ -163,16 +205,3 @@ define(function(require) {
     return Hotgrid;
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-

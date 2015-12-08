@@ -10,6 +10,11 @@
         "body":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis.",
         "instruction":"",
         "_columns":3,
+        "displayTitleReduced": "Reduced title",
+        "bodyReduced": "Reduced text",
+        "_reducedText": {
+            "_isEnabled": true
+        },
         "_audio": {
             "_isEnabled": true,
             "_showControls": true,
@@ -24,7 +29,9 @@
         "_items": [
             {
                 "title": "Grid Item 1",
+                "titleReduced": "Reduced title 1",
                 "body": "This is display text 1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
+                "bodyReduced": "Reduced text 1",
                 "_graphic": {
                     "src": "course/en/images/c-15.png",
                     "srcHover":"course/en/images/c-15-hover.png",
@@ -43,7 +50,9 @@
             },
             {
                 "title": "Grid Item 2",
-                "body": "This is display text 1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
+                "titleReduced": "Reduced title 2",
+                "body": "This is display text 2. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
+                "bodyReduced": "Reduced text 2",
                 "_graphic": {
                     "src": "course/en/images/c-15.png",
                     "srcHover":"course/en/images/c-15-hover.png",
@@ -62,7 +71,9 @@
             },
             {
                 "title": "Grid Item 3",
-                "body": "This is display text 1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
+                "titleReduced": "Reduced title 3",
+                "body": "This is display text 3. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
+                "bodyReduced": "Reduced text 3",
                 "_graphic": {
                     "src": "course/en/images/c-15.png",
                     "srcHover":"course/en/images/c-15-hover.png",
