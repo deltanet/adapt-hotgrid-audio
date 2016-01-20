@@ -128,7 +128,7 @@ define(function(require) {
         },
 
         showItemContent: function(itemModel) {
-			if(this.isPopupOpen) return;// ensure multiple clicks don't open multiple notify popups
+            if(this.isPopupOpen) return;// ensure multiple clicks don't open multiple notify popups
 
             // Set popup text to default full size
             var popupObject_title = itemModel.title;
@@ -143,7 +143,7 @@ define(function(require) {
             Adapt.trigger("notify:popup", {
                 title: popupObject_title,
                 body: "<div class='hotgrid-notify-container'><div class='hotgrid-notify-body'>" + popupObject_body + "</div>" +
-					"<img class='hotgrid-notify-graphic' src='" +
+                    "<img class='hotgrid-notify-graphic' src='" +
                     itemModel._itemGraphic.src + "' alt='" +
                     itemModel._itemGraphic.alt + "'/></div>"
             });
@@ -152,16 +152,18 @@ define(function(require) {
 
             ///// Audio /////
             if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
-                // Determine which filetype to play
-                if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/ogg')) this.audioFile = itemModel._audio.ogg;
-                if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/mpeg')) this.audioFile = itemModel._audio.mp3;
                 // Trigger audio
-                Adapt.trigger('audio:playAudio', this.audioFile, this.model.get('_id'), this.model.get('_audio')._channel);
+                Adapt.trigger('audio:playAudio', itemModel._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
             ///// End of Audio /////
 
             Adapt.once("notify:closed", _.bind(function() {
                 this.isPopupOpen = false;
+                ///// Audio /////
+                if (this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
+                    Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
+                }
+                ///// End of Audio /////
             }, this));
         },
 

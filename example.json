@@ -22,8 +22,8 @@
             "_channel": 0,
             "_location": "top-right",
             "_media": {
-                "mp3": "course/en/audio/MAC_M1_04.mp3",
-                "ogg": "course/en/audio/MAC_M1_04.ogg"
+                "desktop": "course/en/audio/***.mp3",
+                "mobile": "course/en/audio/***.mp3"
             }
         },
         "_items": [
@@ -44,8 +44,7 @@
                     "alt": "alt text"
                 },
                 "_audio": {
-                    "mp3": "course/en/audio/MAC_M1_04_1.mp3",
-                    "ogg": "course/en/audio/MAC_M1_04_1.ogg"
+                    "src": "course/en/audio/***.mp3"
                 }
             },
             {
@@ -65,8 +64,7 @@
                     "alt": "alt text"
                 },
                 "_audio": {
-                    "mp3": "course/en/audio/MAC_M1_04_2.mp3",
-                    "ogg": "course/en/audio/MAC_M1_04_2.ogg"
+                    "src": "course/en/audio/***.mp3"
                 }
             },
             {
@@ -86,8 +84,7 @@
                     "alt": "alt text"
                 },
                 "_audio": {
-                    "mp3": "course/en/audio/MAC_M1_04_3.mp3",
-                    "ogg": "course/en/audio/MAC_M1_04_3.ogg"
+                    "src": "course/en/audio/***.mp3"
                 }
             }
         ]
