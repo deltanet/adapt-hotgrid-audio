@@ -25,10 +25,22 @@ define(function(require) {
             // Listen for text change on audio extension
             this.listenTo(Adapt, "audio:changeText", this.replaceText);
 
-            this.listenTo(Adapt, 'hotgridNotify:back', this.previousItem);
-            this.listenTo(Adapt, 'hotgridNotify:next', this.nextItem);
+            this.listenTo(Adapt, 'notify:closed', this.closeNotify, this);
             
             this.setDeviceSize();
+        },
+
+        setupNotifyListeners: function() {
+            if (componentActive == true) {
+                this.listenTo(Adapt, 'hotgridNotify:back', this.previousItem);
+                this.listenTo(Adapt, 'hotgridNotify:next', this.nextItem);
+            }
+        },
+
+        removeNotifyListeners: function() {;
+            this.stopListening(Adapt, 'hotgridNotify:back', this.previousItem);
+            this.stopListening(Adapt, 'hotgridNotify:next', this.nextItem);
+            componentActive = false;
         },
 
         setDeviceSize: function() {
@@ -50,7 +62,7 @@ define(function(require) {
             if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
                 this.replaceText(Adapt.audio.textSize);
             }
-
+            var componentActive = false;
             var activeItem = 0;
         },
 
@@ -132,6 +144,8 @@ define(function(require) {
                 $link.attr('aria-label', function(index,val) {return val + " " + visitedLabel});
             }
 
+            componentActive = true;
+
             this.showItemContent(itemModel);
 
             this.evaluateCompletion();
@@ -139,6 +153,8 @@ define(function(require) {
 
         showItemContent: function(itemModel) {
             if(this.isPopupOpen) return;// ensure multiple clicks don't open multiple notify popups
+
+            this.setupNotifyListeners();
 
             // Set popup text to default full size
             var popupObject_title = itemModel.title;
@@ -294,6 +310,10 @@ define(function(require) {
                 $('#notify-arrow-next').css('visibility','visible');
                 $('notify-popup-arrow-r').css('visibility','visible');
             }
+        },
+
+        closeNotify: function() {
+            this.removeNotifyListeners();
         },
 
         // Reduced text
