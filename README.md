@@ -1,4 +1,4 @@
-# adapt-hotgrid
+# adapt-hotgrid-audio
 
 **Hotgrid** is a *presentation component* which displays a set of images in a grid layout. 
 
@@ -6,7 +6,7 @@ When a learner selects an image, a pop-up is displayed that consists of text wit
 
 ## Settings Overview
 
-The attributes listed below are used in *components.json* to configure **Hotgrid**, and are properly formatted as JSON in [*example.json*](https://github.com/cgkineo/adapt-hotgrid/blob/master/example.json). 
+The attributes listed below are used in *components.json* to configure **Hotgrid**, and are properly formatted as JSON in [*example.json*](https://github.com/deltanet/adapt-hotgrid-audio/blob/master/example.json). 
 
 ### Attributes
 
@@ -55,3 +55,4 @@ Hotgrid automatically switches to 2 columns in mobile mode for the best user exp
 **Accessibility support:** WAI AA   
 **RTL support:** yes  
 **Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), IE 11, IE10, IE9, IE8, IE Mobile 11, Safari for iPhone (iOS 7+8), Safari for iPad (iOS 7+8), Safari 8, Opera  
+**Authoring tool support:** yes  

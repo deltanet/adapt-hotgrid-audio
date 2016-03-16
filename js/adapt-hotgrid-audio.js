@@ -4,7 +4,7 @@ define(function(require) {
     var ComponentView = require("coreViews/componentView");
     var Adapt = require("coreJS/adapt");
 
-    var Hotgrid = ComponentView.extend({
+    var HotgridAudio = ComponentView.extend({
  
         events: {
             "click .hotgrid-item-image":"onItemClicked"
@@ -342,10 +342,10 @@ define(function(require) {
         }
         
     },{
-        template: "hotgrid"
+        template: "hotgrid-audio"
     });
     
-    Adapt.register("hotgrid", Hotgrid);
+    Adapt.register("hotgrid-audio", HotgridAudio);
     
     return Hotgrid;
 
