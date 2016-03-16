@@ -13,6 +13,14 @@
     }
   },
   "properties":{
+    "instruction": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the instruction text"
+    },
     "_columns": {
       "type":"number",
       "required":true,
@@ -21,6 +29,22 @@
       "default": 3,
       "validators": ["number"],
       "help": "This value determines the number of columns within the grid. Any number of columns can be set however keep in mind the more columns there are the smaller the items will be."
+    },
+    "displayTitleReduced": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Reduced Text Display Title",
+      "inputType": "Text",
+      "validators": []
+    },
+    "bodyReduced": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Reduced Text Body",
+      "inputType": "TextArea",
+      "validators": []
     },
     "_items": {
       "type":"array",
@@ -39,6 +63,15 @@
             "validators": [],
             "help": "This is the title text for a grid item pop-up."
           },
+          "titleReduced": {
+            "type":"string",
+            "required":false,
+            "default": "",
+            "title": "Item Popup Title - Reduced Text",
+            "inputType": "Text",
+            "validators": [],
+            "help": "This is the title text for a grid item pop-up when reduced text is shown."
+          },
           "body": {
             "type":"string",
             "required":false,
@@ -47,6 +80,15 @@
             "inputType": "Text",
             "validators": [],
             "help": "This is the body text for a grid item pop-up."
+          },
+          "bodyReduced": {
+            "type":"string",
+            "required":false,
+            "default": "",
+            "title": "Item Popup Body - Reduced Text",
+            "inputType": "Text",
+            "validators": [],
+            "help": "This is the body text for a grid item pop-up when reduced text is shown."
           },
           "_graphic": {
             "type":"object",
@@ -119,7 +161,38 @@
               }
             },
             "help": "This is the image for a grid item pop-up."
+          },
+          "_audio": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "src": {
+                "type": "string",
+                "required": false,
+                "default": "",
+                "title": "Audio",
+                "inputType": "Asset:audio",
+                "validators": [],
+                "help": "Optional audio for this grid item"
+              }
+            }
           }
+        }
+      }
+    },
+    "_reducedText": {
+      "type":"object",
+      "required":false,
+      "title": "Reduced Text Options",
+      "help": "The Audio extension must be installed for reduced text options to work",
+      "properties":{
+        "_isEnabled": {
+          "type":"boolean",
+          "required":false,
+          "default": true,
+          "title": "Reduced Text Enabled",
+          "inputType": { "type": "Boolean", "options": [false, true]},
+          "validators": []
         }
       }
     }
