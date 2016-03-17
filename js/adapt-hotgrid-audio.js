@@ -59,7 +59,7 @@ define(function(require) {
                 this.setReadyStatus();
             }, this));
 
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
                 this.replaceText(Adapt.audio.textSize);
             }
             var componentActive = false;
@@ -161,7 +161,7 @@ define(function(require) {
             var popupObject_body = itemModel.body;
 
             // If reduced text is enabled and selected
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
                 popupObject_title = itemModel.titleReduced;
                 popupObject_body = itemModel.bodyReduced;
             }
@@ -205,7 +205,7 @@ define(function(require) {
             
 
             ///// Audio /////
-            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
                 // Trigger audio
                 Adapt.trigger('audio:playAudio', itemModel._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
@@ -214,7 +214,7 @@ define(function(require) {
             Adapt.once("notify:closed", _.bind(function() {
                 //this.isPopupOpen = false;
                 ///// Audio /////
-                if (this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
+                if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
                     Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
                 }
                 ///// End of Audio /////
@@ -268,7 +268,7 @@ define(function(require) {
             var popupObject_body = itemModel.body;
 
             // If reduced text is enabled and selected
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
                 popupObject_title = itemModel.titleReduced;
                 popupObject_body = itemModel.bodyReduced;
             }
@@ -280,7 +280,7 @@ define(function(require) {
                 itemModel._itemGraphic.alt + "'/></div>");
 
             ///// Audio /////
-            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
                 // Trigger audio
                 Adapt.trigger('audio:playAudio', itemModel._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
@@ -319,7 +319,7 @@ define(function(require) {
         // Reduced text
         replaceText: function(value) {
             // If enabled
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
                 // Change component title and body
                 if(value == 0) {
                     this.$('.component-title-inner').html(this.model.get('displayTitle')).a11y_text();
@@ -347,6 +347,6 @@ define(function(require) {
     
     Adapt.register("hotgrid-audio", HotgridAudio);
     
-    return Hotgrid;
+    return HotgridAudio;
 
 });
