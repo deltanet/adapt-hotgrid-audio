@@ -2,7 +2,7 @@
         "_id":"c-05",
         "_parentId":"b-05",
         "_type":"component",
-        "_component":"hotgrid",
+        "_component":"hotgrid-audio",
         "_classes":"",
         "_layout":"full",
         "title":"Adapt Hotgrid",
