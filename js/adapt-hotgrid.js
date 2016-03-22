@@ -168,7 +168,7 @@ define(function(require) {
             }
 
             // Check if item has a graphic
-            if(itemModel._itemGraphic) {
+            if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
                 interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
             } else {
                 interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
@@ -277,7 +277,7 @@ define(function(require) {
             }
 
             // Check if item has a graphic
-            if(itemModel._itemGraphic) {
+            if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
                 interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
             } else {
                 interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
