@@ -167,11 +167,16 @@ define(function(require) {
                 popupObject_body = itemModel.bodyReduced;
             }
 
-            // Check if item has a graphic
-            if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
-                interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
+            // Check if item has no text - just show graphic
+            if(popupObject_body == "") {
+                interactionObject_body = "<div class='notify-container'><img class='notify-graphic fullwidth' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/></div>";
             } else {
-                interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
+                // Else show text and check if item has a graphic
+                if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
+                    interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
+                } else {
+                    interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
+                }
             }
 
             // Trigger which type of notify based on the '_canCycleThroughPagination' setting
@@ -276,11 +281,16 @@ define(function(require) {
                 popupObject_body = itemModel.bodyReduced;
             }
 
-            // Check if item has a graphic
-            if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
-                interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
+            // Check if item has no text - just show graphic
+            if(popupObject_body == "") {
+                interactionObject_body = "<div class='notify-container'><img class='notify-graphic fullwidth' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/></div>";
             } else {
-                interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
+                // Else show text and check if item has a graphic
+                if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
+                    interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
+                } else {
+                    interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
+                }
             }
 
             // Update elements
