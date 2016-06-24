@@ -159,6 +159,7 @@ define(function(require) {
             // Set popup text to default full size
             var popupObject_title = itemModel.title;
             var popupObject_body = itemModel.body;
+            var interactionObject_body = "";
 
             // If reduced text is enabled and selected
             if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
@@ -166,14 +167,23 @@ define(function(require) {
                 popupObject_body = itemModel.bodyReduced;
             }
 
+            // Check if item has no text - just show graphic
+            if(popupObject_body == "") {
+                interactionObject_body = "<div class='notify-container'><img class='notify-graphic fullwidth' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/></div>";
+            } else {
+                // Else show text and check if item has a graphic
+                if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
+                    interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
+                } else {
+                    interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
+                }
+            }
+
             // Trigger which type of notify based on the '_canCycleThroughPagination' setting
             if(this.model.get('_canCycleThroughPagination')) {
                 var interactionObject = {
                     title: popupObject_title,
-                    body: "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div>" +
-                        "<img class='notify-graphic' src='" +
-                        itemModel._itemGraphic.src + "' alt='" +
-                        itemModel._itemGraphic.alt + "'/></div>",
+                    body: interactionObject_body,
                     _back:[
                         {
                             _callbackEvent: "hotgridNotify:back"
@@ -195,10 +205,7 @@ define(function(require) {
             } else {
                 var popupObject = {
                     title: popupObject_title,
-                    body: "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div>" +
-                        "<img class='notify-graphic' src='" +
-                        itemModel._itemGraphic.src + "' alt='" +
-                        itemModel._itemGraphic.alt + "'/></div>"
+                    body: interactionObject_body
                 }
                 Adapt.trigger('notify:popup', popupObject);
             }
@@ -266,6 +273,7 @@ define(function(require) {
             // Set popup text to default full size
             var popupObject_title = itemModel.title;
             var popupObject_body = itemModel.body;
+            var interactionObject_body = "";
 
             // If reduced text is enabled and selected
             if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
@@ -273,11 +281,21 @@ define(function(require) {
                 popupObject_body = itemModel.bodyReduced;
             }
 
+            // Check if item has no text - just show graphic
+            if(popupObject_body == "") {
+                interactionObject_body = "<div class='notify-container'><img class='notify-graphic fullwidth' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/></div>";
+            } else {
+                // Else show text and check if item has a graphic
+                if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
+                    interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
+                } else {
+                    interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
+                }
+            }
+
+            // Update elements
             $('.notify-popup-title-inner').html(popupObject_title);
-            $('.notify-popup-body-inner').html("<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div>" +
-                "<img class='notify-graphic' src='" +
-                itemModel._itemGraphic.src + "' alt='" +
-                itemModel._itemGraphic.alt + "'/></div>");
+            $('.notify-popup-body-inner').html(interactionObject_body);
 
             ///// Audio /////
             if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
