@@ -2,7 +2,7 @@
         "_id":"c-05",
         "_parentId":"b-05",
         "_type":"component",
-        "_component":"hotgrid",
+        "_component":"hotgrid-audio",
         "_classes":"",
         "_layout":"full",
         "title":"Adapt Hotgrid",
@@ -14,17 +14,6 @@
         "bodyReduced": "Reduced text",
         "_reducedText": {
             "_isEnabled": true
-        },
-        "_audio": {
-            "_isEnabled": true,
-            "_showControls": true,
-            "_autoplay": true,
-            "_channel": 0,
-            "_location": "top-right",
-            "_media": {
-                "desktop": "course/en/audio/***.mp3",
-                "mobile": "course/en/audio/***.mp3"
-            }
         },
         "_items": [
             {

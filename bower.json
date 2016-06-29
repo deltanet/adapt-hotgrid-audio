@@ -1,18 +1,19 @@
 {
   "name": "adapt-hotgrid-audio",
   "version": "2.0.4",
-  "framework": "2.0.4",
+  "framework": "^2.0.4",
   "homepage": "https://github.com/deltanet/adapt-hotgrid-audio",
-  "displayName": "Hotgrid",
-  "component": "hotgrid",
+  "displayName": "Hotgrid Audio",
+  "component": "hotgrid-audio",
   "assetFields": [
     "_items[]._graphic.src",
     "_items[]._graphic.srcHover",
     "_items[]._graphic.srcVisited",
-    "_items[]._itemGraphic.src"
+    "_items[]._itemGraphic.src",
+    "_items[]._audio.src"
   ],
   "description": "A component that displays selectable images in a grid format.",
-  "main": "/js/adapt-hotgrid.js",
+  "main": "/js/adapt-hotgrid-audio.js",
   "keywords": [
     "adapt-plugin",
     "adapt-component"
