@@ -59,7 +59,7 @@ define(function(require) {
                 this.setReadyStatus();
             }, this));
 
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 this.replaceText(Adapt.audio.textSize);
             }
             var componentActive = false;
@@ -162,7 +162,7 @@ define(function(require) {
             var interactionObject_body = "";
 
             // If reduced text is enabled and selected
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
                 popupObject_title = itemModel.titleReduced;
                 popupObject_body = itemModel.bodyReduced;
             }
@@ -212,7 +212,7 @@ define(function(require) {
             
 
             ///// Audio /////
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
                 // Trigger audio
                 Adapt.trigger('audio:playAudio', itemModel._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
@@ -221,7 +221,7 @@ define(function(require) {
             Adapt.once("notify:closed", _.bind(function() {
                 //this.isPopupOpen = false;
                 ///// Audio /////
-                if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
+                if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
                     Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
                 }
                 ///// End of Audio /////
@@ -276,7 +276,7 @@ define(function(require) {
             var interactionObject_body = "";
 
             // If reduced text is enabled and selected
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
                 popupObject_title = itemModel.titleReduced;
                 popupObject_body = itemModel.bodyReduced;
             }
@@ -298,7 +298,7 @@ define(function(require) {
             $('.notify-popup-body-inner').html(interactionObject_body);
 
             ///// Audio /////
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
                 // Trigger audio
                 Adapt.trigger('audio:playAudio', itemModel._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
@@ -337,15 +337,7 @@ define(function(require) {
         // Reduced text
         replaceText: function(value) {
             // If enabled
-            if (Adapt.config.get('_audio') && Adapt.config.get('_audio')._isReducedTextEnabled && this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
-                // Change component title and body
-                if(value == 0) {
-                    this.$('.component-title-inner').html(this.model.get('displayTitle')).a11y_text();
-                    this.$('.component-body-inner').html(this.model.get('body')).a11y_text();
-                } else {
-                    this.$('.component-title-inner').html(this.model.get('displayTitleReduced')).a11y_text();
-                    this.$('.component-body-inner').html(this.model.get('bodyReduced')).a11y_text();
-                }
+            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 // Change each items title and body
                 for (var i = 0; i < this.model.get('_items').length; i++) {
                     if(value == 0) {
