@@ -30,22 +30,6 @@
       "validators": ["number"],
       "help": "This value determines the number of columns within the grid. Any number of columns can be set however keep in mind the more columns there are the smaller the items will be."
     },
-    "displayTitleReduced": {
-      "type": "string",
-      "required": false,
-      "default": "",
-      "title": "Reduced Text Display Title",
-      "inputType": "Text",
-      "validators": []
-    },
-    "bodyReduced": {
-      "type": "string",
-      "required": false,
-      "default": "",
-      "title": "Reduced Text Body",
-      "inputType": "TextArea",
-      "validators": []
-    },
     "_items": {
       "type":"array",
       "required":true,
@@ -177,22 +161,6 @@
               }
             }
           }
-        }
-      }
-    },
-    "_reducedText": {
-      "type":"object",
-      "required":false,
-      "title": "Reduced Text Options",
-      "help": "The Audio extension must be installed for reduced text options to work",
-      "properties":{
-        "_isEnabled": {
-          "type":"boolean",
-          "required":false,
-          "default": true,
-          "title": "Reduced Text Enabled",
-          "inputType": { "type": "Boolean", "options": [false, true]},
-          "validators": []
         }
       }
     }
