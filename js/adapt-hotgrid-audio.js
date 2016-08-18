@@ -103,6 +103,8 @@ define(function(require) {
         centerItem: function(item) {
             item.css({
                 float: "none",
+                clear: "both",
+                padding: "3",
                 margin: "auto"
             });
         },
