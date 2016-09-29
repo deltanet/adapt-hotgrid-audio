@@ -7,11 +7,11 @@ define(function(require) {
     var HotgridAudio = ComponentView.extend({
 
         events: {
-            "click .hotgrid-item-image":"onItemClicked",
-            "click .hotgrid-popup-back":"previousItem",
-            "click .hotgrid-popup-next":"nextItem",
+            'click .hotgrid-item-image': 'onItemClicked',
+            'click .hotgrid-popup-back': 'previousItem',
+            'click .hotgrid-popup-next': 'nextItem',
             'click .hotgrid-popup-close': 'closePopup',
-            'click .hotgrid-shadow': 'closePopup',
+            'click .hotgrid-shadow': 'closePopup'
         },
 
         isPopupOpen: false,
