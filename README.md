@@ -1,12 +1,12 @@
 # adapt-hotgrid-audio
 
-**Hotgrid** is a *presentation component* which displays a set of images in a grid layout. 
+**Hotgrid** is a *presentation component* which displays a set of images in a grid layout.
 
 When a learner selects an image, a pop-up is displayed that consists of text with an image.
 
 ## Settings Overview
 
-The attributes listed below are used in *components.json* to configure **Hotgrid**, and are properly formatted as JSON in [*example.json*](https://github.com/deltanet/adapt-hotgrid-audio/blob/master/example.json). 
+The attributes listed below are used in *components.json* to configure **Hotgrid**, and are properly formatted as JSON in [*example.json*](https://github.com/deltanet/adapt-hotgrid-audio/blob/master/example.json).
 
 ### Attributes
 
@@ -24,7 +24,7 @@ The attributes listed below are used in *components.json* to configure **Hotgrid
 
 Hotgrid has a dynamic layout system. If you have 5 items but set the columns to 3, hotgrid will put 3 items in the first row and 2 on the second. The second row then will be automatically centred. This works with any amount of items and columns - ie that last row will always be centred for you.
 
-**_items** (string): Multiple items may be created. Each item represents one grid item for this component and contains values for **title**, **body**, **_graphic** and **_itemGraphic**. 
+**_items** (string): Multiple items may be created. Each item represents one grid item for this component and contains values for **title**, **body**, **_graphic** and **_itemGraphic**.
 
 >**title** (string): This is the title text for a grid item pop-up.
 
@@ -38,18 +38,18 @@ Hotgrid has a dynamic layout system. If you have 5 items but set the columns to 
 
 >>**title** (string): This is optional text which is displayed under the grid item image.
 
->**_itemGraphic** (string): This is the image for a grid item pop-up. This also contains values **src** and **alt**. 
+>**_itemGraphic** (string): This is the image for a grid item pop-up. This also contains values **src** and **alt**.
 
 ### Accessibility
 **Hotgrid** has a label assigned using the [aria-label](https://github.com/adaptlearning/adapt_framework/wiki/Aria-Labels) attribute: **ariaRegion**. These labels are not visible elements. They are utilized by assistive technology such as screen readers. This label is included within the *example.json* and will need adding to the _globals in *course.json*.
 
 ## Limitations
- 
-Hotgrid automatically switches to 2 columns in mobile mode for the best user experience however this can be overridden in the css. 
+
+Hotgrid automatically switches to 2 columns in mobile mode for the best user experience however this can be overridden in the css.
 
 
 ----------------------------
-**Version number:**  2.0.6
+**Version number:**  2.0.7  
 **Framework versions:**  2.0     
 **Author / maintainer:**   
 **Accessibility support:** WAI AA   
