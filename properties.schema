@@ -30,6 +30,15 @@
       "validators": ["number"],
       "help": "This value determines the number of columns within the grid. Any number of columns can be set however keep in mind the more columns there are the smaller the items will be."
     },
+    "_canCycleThroughPagination": {
+      "type":"boolean",
+      "required":true,
+      "default": true,
+      "title": "Item pagination",
+      "inputType": { "type": "Boolean", "options": [false, true]},
+      "validators": [],
+      "help": "If set to 'true', learner can cycle through items"
+    },
     "_items": {
       "type":"array",
       "required":true,
