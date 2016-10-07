@@ -22,6 +22,8 @@ The attributes listed below are used in *components.json* to configure **Hotgrid
 
 **_columns** (number): This value determines the number of columns within the grid. Any number of columns can be set however keep in mind the more columns there are the smaller the items will be.
 
+**_canCycleThroughPagination** (boolean): If set to 'true', learner can cycle through items.
+
 Hotgrid has a dynamic layout system. If you have 5 items but set the columns to 3, hotgrid will put 3 items in the first row and 2 on the second. The second row then will be automatically centred. This works with any amount of items and columns - ie that last row will always be centred for you.
 
 **_items** (string): Multiple items may be created. Each item represents one grid item for this component and contains values for **title**, **body**, **_graphic** and **_itemGraphic**.
