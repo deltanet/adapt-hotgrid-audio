@@ -184,6 +184,10 @@ define(function(require) {
 
         closePopup: function(event) {
           event.preventDefault();
+
+          // Show navigation bar
+          $('.navigation').css("display", "block");
+
           if (this.disableAnimation) {
 
               this.$('.hotgrid-popup').css("display", "none");
@@ -235,6 +239,9 @@ define(function(require) {
         },
 
         openPopup: function(activeItem) {
+
+          // Hide navigation bar
+          $('.navigation').css("display", "none");
 
           var itemModel = this.model.get('_items')[activeItem];
 
