@@ -20,8 +20,6 @@ define(function(require) {
                 }
             }, this);
 
-            _.bindAll(this, 'onKeyUp');
-
             this.listenTo(Adapt, 'device:changed', this.resizeControl);
             this.listenTo(Adapt, "audio:changeText", this.replaceText);
             this.listenTo(Adapt, 'notify:closed', this.closeNotify, this);
@@ -299,26 +297,6 @@ define(function(require) {
                     }
                 }
             }
-        },
-
-        setupEscapeKey: function() {
-          var hasAccessibility = Adapt.config.has('_accessibility') && Adapt.config.get('_accessibility')._isActive;
-
-          if (!hasAccessibility && this.isPopupOpen) {
-              $(window).on("keyup", this.onKeyUp);
-          } else {
-              $(window).off("keyup", this.onKeyUp);
-          }
-        },
-
-        onAccessibilityToggle: function() {
-          this.setupEscapeKey();
-        },
-
-        onKeyUp: function(event) {
-          if (event.which != 27) return;
-          event.preventDefault();
-          this.closePopup();
         }
 
     },{
