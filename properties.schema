@@ -9,7 +9,8 @@
       "required": true,
       "default": "This component contains selectable grid items. Select an item to trigger a popup that includes an image with display text. Select the close button to close the popup.",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     }
   },
   "properties":{
@@ -19,7 +20,8 @@
       "default": "",
       "inputType": "Text",
       "validators": [],
-      "help": "This is the instruction text"
+      "help": "This is the instruction text",
+      "translatable": true
     },
     "_columns": {
       "type":"number",
@@ -54,7 +56,8 @@
             "title": "Item Popup Title",
             "inputType": "Text",
             "validators": [],
-            "help": "This is the title text for a grid item pop-up."
+            "help": "This is the title text for a grid item pop-up.",
+            "translatable": true
           },
           "titleReduced": {
             "type":"string",
@@ -63,7 +66,8 @@
             "title": "Item Popup Title - Reduced Text",
             "inputType": "Text",
             "validators": [],
-            "help": "This is the title text for a grid item pop-up when reduced text is shown."
+            "help": "This is the title text for a grid item pop-up when reduced text is shown.",
+            "translatable": true
           },
           "body": {
             "type":"string",
@@ -72,7 +76,8 @@
             "title": "Item Popup Body",
             "inputType": "Text",
             "validators": [],
-            "help": "This is the body text for a grid item pop-up."
+            "help": "This is the body text for a grid item pop-up.",
+            "translatable": true
           },
           "bodyReduced": {
             "type":"string",
@@ -81,7 +86,8 @@
             "title": "Item Popup Body - Reduced Text",
             "inputType": "Text",
             "validators": [],
-            "help": "This is the body text for a grid item pop-up when reduced text is shown."
+            "help": "This is the body text for a grid item pop-up when reduced text is shown.",
+            "translatable": true
           },
           "_graphic": {
             "type":"object",
@@ -119,7 +125,8 @@
                 "title": "Item alt text",
                 "inputType": "Text",
                 "validators": [],
-                "help": "This text becomes the image’s alt attribute."
+                "help": "This text becomes the image’s alt attribute.",
+                "translatable": true
               },
               "title": {
                 "type":"string",
@@ -128,7 +135,8 @@
                 "title": "Item Title",
                 "inputType": "Text",
                 "validators": [],
-                "help": "This is optional text which is displayed under the grid item image."
+                "help": "This is optional text which is displayed under the grid item image.",
+                "translatable": true
               }
             }
           },
@@ -150,7 +158,8 @@
                 "default": "",
                 "title": "Item alt text",
                 "inputType": "Text",
-                "validators": []
+                "validators": [],
+                "translatable": true
               }
             },
             "help": "This is the image for a grid item pop-up."
