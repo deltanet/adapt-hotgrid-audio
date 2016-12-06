@@ -61,7 +61,7 @@ define(function(require) {
 
         setUpColumns: function() {
           var columns = this.model.get('_columns');
-          var itemWidth = Math.floor(100 / columns) - columns;
+          var itemWidth = Math.floor(98 / columns) - columns;
 
           if (columns && Adapt.device.screenSize === 'large') {
             this.$('.hotgrid-grid-item').css('width', itemWidth + '%');
