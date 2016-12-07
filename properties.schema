@@ -142,15 +142,15 @@
           },
           "_itemGraphic": {
             "type":"object",
-            "required":true,
+            "required":false,
             "title": "Popup Graphic",
             "properties":{
               "src": {
                 "type":"string",
-                "required":true,
+                "required":false,
                 "default": "",
                 "inputType": "Asset:image",
-                "validators": ["required"]
+                "validators": []
               },
               "alt": {
                 "type":"string",
