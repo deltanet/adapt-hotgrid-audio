@@ -56,7 +56,6 @@ define(function(require) {
         resizeControl: function() {
             this.setDeviceSize();
             this.setUpColumns();
-            this.setImageSize();
         },
 
         setUpColumns: function() {
@@ -128,7 +127,6 @@ define(function(require) {
                     body: interactionObject_body+this.interactionNav
                 }
                 Adapt.trigger('notify:popup', interactionObject);
-                this.setImageSize();
                 // Delay showing the nav arrows until notify has faded in
                 _.delay(_.bind(function() {
                     this.updateNotifyNav(activeItem);
@@ -230,8 +228,6 @@ define(function(require) {
             $('.notify-popup-title-inner').html(popupObject_title);
             $('.notify-popup-body-inner').html(interactionObject_body+this.interactionNav);
 
-            this.setImageSize();
-
             ///// Audio /////
             if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
               // Reset onscreen id
@@ -270,11 +266,6 @@ define(function(require) {
             $('.notify-popup-arrow-l').on('click', _.bind(this.previousItem, this));
             $('.notify-popup-arrow-r').on('click', _.bind(this.nextItem, this));
             //
-        },
-
-        setImageSize: function() {
-          this.imageHeight = $('.notify-container img').height();
-          $('.notify-container').css('min-height',this.imageHeight+'px');
         },
 
         closeNotify: function() {
