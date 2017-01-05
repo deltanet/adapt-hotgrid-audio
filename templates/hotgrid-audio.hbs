@@ -17,5 +17,49 @@
         {{/each}}
       </div>
     </div>
+    <div class="hotgrid-popup" role="dialog" aria-label="{{_globals._components._hotgrid.ariaPopupLabel}}">
+      <div class="hotgrid-popup-inner">
+        <div class="hotgrid-popup-content">
+          <div class="hotgrid-popup-content-inner">
+            {{#each _items}}
+            <div class="hotgrid-popup-item item-{{@index}}">
+              {{#if title}}
+              <div class="hotgrid-popup-title">
+                <div class="hotgrid-popup-title-inner h5" tabindex="0" role="heading" aria-level="1">
+                  {{{title}}}
+                </div>
+              </div>
+              {{/if}}
+              {{#if _itemGraphic}}
+                <div class="hotgrid-popup-graphic">
+                  <div class="hotgrid-popup-graphic-inner">
+                    <img src="{{_itemGraphic.src}}" aria-label="{{_itemGraphic.alt}}" tabindex="0"/>
+                  </div>
+                </div>
+              {{/if}}
+              {{#if body}}
+                <div class="hotgrid-popup-body">
+                  <div class="hotgrid-popup-body-inner">{{{a11y_text body}}}</div>
+                </div>
+              {{/if}}
+            </div>
+            {{/each}}
+            {{#if _canCycleThroughPagination}}
+            <div class="hotgrid-popup-navigation">
+              <button class="base hotgrid-popup-arrow hotgrid-popup-back" role="button" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
+                <div class="icon icon-controls-left"></div>
+              </button>
+              <button class="base hotgrid-popup-arrow hotgrid-popup-next" role="button" aria-label="{{_globals._accessibility._ariaLabels.next}}">
+                <div class="icon icon-controls-right"></div>
+              </button>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="hotgrid-popup-buttons">
+          <button class="hotgrid-popup-close" role="button" aria-label="{{_globals._accessibility._ariaLabels.closePopup}}">{{close}}</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
