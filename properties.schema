@@ -23,6 +23,16 @@
       "help": "This is the instruction text",
       "translatable": true
     },
+    "close": {
+      "type": "string",
+      "required": true,
+      "title": "Close button text",
+      "default": "Close",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the text for the close popup button.",
+      "translatable": true
+    },
     "_columns": {
       "type":"number",
       "required":true,
