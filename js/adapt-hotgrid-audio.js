@@ -7,12 +7,15 @@ define(function(require) {
     var HotgridAudio = ComponentView.extend({
 
         events: {
-            "click .hotgrid-item-image":"onItemClicked"
+          'click .hotgrid-item-image': 'onItemClicked',
+          'click .hotgrid-popup-back': 'previousItem',
+          'click .hotgrid-popup-next': 'nextItem',
+          'click .hotgrid-popup-close': 'closePopup'
         },
 
-        isPopupOpen: false,
-
         preRender: function () {
+          this.disableAnimation = Adapt.config.has('_disableAnimation') ? Adapt.config.get('_disableAnimation') : false;
+
             var items = this.model.get('_items');
             _.each(items, function(item) {
                 if (item._graphic.srcHover && item._graphic.srcVisited) {
@@ -20,9 +23,11 @@ define(function(require) {
                 }
             }, this);
 
+            _.bindAll(this, 'onKeyUp');
+
             this.listenTo(Adapt, 'device:changed', this.resizeControl);
+            this.listenTo(Adapt, 'device:resize', this.resetPopup);
             this.listenTo(Adapt, "audio:changeText", this.replaceText);
-            this.listenTo(Adapt, 'notify:closed', this.closeNotify, this);
 
             this.setDeviceSize();
         },
@@ -46,11 +51,9 @@ define(function(require) {
             if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 this.replaceText(Adapt.audio.textSize);
             }
-            var componentActive = false;
             var activeItem = 0;
 
-            // Set string of elements to show the navigation arrows
-            this.interactionNav = "<div class='notify-popup-navigation'><button class='base notify-popup-arrow notify-popup-arrow-l' id='notify-arrow-back' role='button'><div class='icon icon-controls-left'></div></button><button class='base notify-popup-arrow notify-popup-arrow-r' id='notify-arrow-next' role='button'><div class='icon icon-controls-right'></div></button></div>";
+            this.isPopupOpen = false;
         },
 
         resizeControl: function() {
@@ -77,6 +80,8 @@ define(function(require) {
             var itemModel = this.model.get('_items')[$item.index()];
 
             this.$('.hotgrid-grid-item.active').removeClass('active');
+            this.$('.hotgrid-popup-item').hide();
+
             $item.addClass('active');
 
             activeItem = $item.index();
@@ -89,80 +94,11 @@ define(function(require) {
                 $link.attr('aria-label', function(index,val) {return val + " " + visitedLabel});
             }
 
-            componentActive = true;
+            this.resizeElements(activeItem);
 
-            this.showItemContent(itemModel);
-        },
+            this.$('.item-'+activeItem).show();
 
-        showItemContent: function(itemModel) {
-            if(this.isPopupOpen) return;// ensure multiple clicks don't open multiple notify popups
-
-            // Set popup text to default full size
-            var popupObject_title = itemModel.title;
-            var popupObject_body = itemModel.body;
-            var interactionObject_body = "";
-
-            // If reduced text is enabled and selected
-            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
-                popupObject_title = itemModel.titleReduced;
-                popupObject_body = itemModel.bodyReduced;
-            }
-
-            // Check if item has no text - just show graphic
-            if(popupObject_body == "") {
-                interactionObject_body = "<div class='notify-container'><div class='notify-graphic fullwidth'><img src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/></div></div>";
-            } else {
-                // Else show text and check if item has a graphic
-                if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
-                    interactionObject_body = "<div class='notify-container'><div class='notify-graphic'><img src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/></div><div class='notify-body'>" + popupObject_body + "</div></div>";
-                } else {
-                    interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
-                }
-            }
-
-            // Add interactionNav to body based on the '_canCycleThroughPagination' setting
-            if(this.model.get('_canCycleThroughPagination')) {
-                var interactionObject = {
-                    title: popupObject_title,
-                    body: interactionObject_body+this.interactionNav
-                }
-                Adapt.trigger('notify:popup', interactionObject);
-                // Delay showing the nav arrows until notify has faded in
-                _.delay(_.bind(function() {
-                    this.updateNotifyNav(activeItem);
-                }, this), 600);
-
-            } else {
-                var popupObject = {
-                    title: popupObject_title,
-                    body: interactionObject_body
-                }
-                Adapt.trigger('notify:popup', popupObject);
-            }
-
-            ///// Audio /////
-            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
-              // Reset onscreen id
-              Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
-              // Trigger audio
-              Adapt.trigger('audio:playAudio', itemModel._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
-            }
-            ///// End of Audio /////
-
-            Adapt.once("notify:closed", _.bind(function() {
-                this.isPopupOpen = false;
-                ///// Audio /////
-                if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
-                    Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
-                }
-                ///// End of Audio /////
-                this.$('.hotgrid-grid-item.active').removeClass('active');
-                //
-            }, this));
-        },
-
-        getCurrentItem: function(index) {
-            return this.model.get('_items')[index];
+            this.openPopup(activeItem);
         },
 
         getVisitedItems: function() {
@@ -179,54 +115,114 @@ define(function(require) {
 
         previousItem: function (event) {
             activeItem--;
-            this.updateNotifyContent(activeItem);
+            this.updatePopupContent(activeItem);
         },
 
         nextItem: function (event) {
             activeItem++;
-            this.updateNotifyContent(activeItem);
+            this.updatePopupContent(activeItem);
         },
 
-        updateNotifyContent: function(index) {
+        resizeElements: function(activeItem) {
+          var itemModel = this.model.get('_items')[activeItem];
+          // Check if item has no text - show graphic fullwidth
+          if(itemModel.body == "") {
+            this.$('.item-'+activeItem+ ' > .hotgrid-popup-graphic').addClass('fullwidth');
+          }
+          // Check if item has no graphic - show text fullwidth
+          if(itemModel._itemGraphic.src == "") {
+            this.$('.item-'+activeItem+ ' > .hotgrid-popup-graphic').addClass('hidden');
+          }
+        },
+
+        updatePopupContent: function(activeItem) {
 
             this.$('.hotgrid-grid-item.active').removeClass('active');
 
-            var notifyItems = this.$(".hotgrid-grid-inner").children();
-            this.$(notifyItems[index]).addClass('active');
+            var popupItems = this.$(".hotgrid-grid-inner").children();
+            this.$(popupItems[activeItem]).addClass('active');
 
-            var itemModel = this.model.get('_items')[index];
+            var itemModel = this.model.get('_items')[activeItem];
+
+            this.$('.hotgrid-popup-item').hide();
 
             if(!itemModel.visited) {
-                this.$(notifyItems[index]).addClass("visited");
-                itemModel.visited = true;
+              this.$(popupItems[activeItem]).addClass("visited");
+              itemModel.visited = true;
             }
 
-            // Set popup text to default full size
-            var popupObject_title = itemModel.title;
-            var popupObject_body = itemModel.body;
-            var interactionObject_body = "";
+            this.resizeElements(activeItem);
 
-            // If reduced text is enabled and selected
-            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
-                popupObject_title = itemModel.titleReduced;
-                popupObject_body = itemModel.bodyReduced;
+            this.$('.item-'+activeItem).show();
+
+            ///// Audio /////
+            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+              // Reset onscreen id
+              Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
+              // Trigger audio
+                Adapt.trigger('audio:playAudio', itemModel._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
+            ///// End of Audio /////
 
-            // Check if item has no text - just show graphic
-            if(popupObject_body == "") {
-                interactionObject_body = "<div class='notify-container'><div class='notify-graphic fullwidth'><img src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/></div></div>";
+            this.updatePopupNav(activeItem);
+            this.resetPopup();
+        },
+
+        updatePopupNav: function (index) {
+          // Hide all
+          this.$('.hotgrid-popup-back').css('visibility','hidden');
+          this.$('.hotgrid-popup-next').css('visibility','hidden');
+
+          // Show buttons
+          if(index > 0) {
+            this.$('.hotgrid-popup-back').css('visibility','visible');
+          }
+          if(index < (this.model.get('_items').length)-1) {
+            this.$('.hotgrid-popup-next').css('visibility','visible');
+          }
+
+        },
+
+        openPopup: function(activeItem) {
+
+          this.isPopupOpen = true;
+
+          if (this.disableAnimation) {
+            $('#shadow').removeClass("display-none");
+          } else {
+            $('#shadow').velocity({opacity:1},{duration:400, begin: _.bind(function() {
+                $("#shadow").removeClass("display-none");
+            }, this)});
+          }
+          $('#shadow').css("z-index","549");
+
+          $('body').scrollDisable();
+
+          var itemModel = this.model.get('_items')[activeItem];
+
+          if (this.disableAnimation) {
+            this.$('.hotgrid-popup').css("display", "block");
+              complete.call(this);
             } else {
-                // Else show text and check if item has a graphic
-                if(itemModel._itemGraphic && itemModel._itemGraphic.src != "") {
-                    interactionObject_body = "<div class='notify-container'><div class='notify-graphic'><img src='" + itemModel._itemGraphic.src + "' alt='" + itemModel._itemGraphic.alt + "'/></div><div class='notify-body'>" + popupObject_body + "</div></div>";
-                } else {
-                    interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
-                }
-            }
+              this.$('.hotgrid-popup').velocity({ opacity: 0 }, {duration:0}).velocity({ opacity: 1 }, { duration:400, begin: _.bind(function() {
+              this.$('.hotgrid-popup').css("display", "block");
+              complete.call(this);
+          }, this) });
 
-            // Update elements
-            $('.notify-popup-title-inner').html(popupObject_title);
-            $('.notify-popup-body-inner').html(interactionObject_body+this.interactionNav);
+          function complete() {
+            /*ALLOWS POPUP MANAGER TO CONTROL FOCUS*/
+            Adapt.trigger('popup:opened', this.$('.hotgrid-popup'));
+
+            this.resetPopup();
+
+            //set focus to first accessible element
+            this.$('.hotgrid-popup').a11y_focus();
+
+            if(this.model.get('_canCycleThroughPagination')) {
+              _.delay(_.bind(function() {
+                this.updatePopupNav(activeItem);
+              }, this), 400);
+            }
 
             ///// Audio /////
             if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
@@ -236,46 +232,101 @@ define(function(require) {
               Adapt.trigger('audio:playAudio', itemModel._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
             ///// End of Audio /////
+          }
 
-            this.updateNotifyNav(activeItem);
+          $('#shadow').on('click', _.bind(this.closePopup, this));
 
-            Adapt.trigger('device:resize');
+          this.setupEscapeKey();
+        }
+      },
+
+        closePopup: function(event) {
+          event.preventDefault();
+
+          if (this.disableAnimation) {
+            $('#shadow').addClass("display-none");
+          } else {
+            $('#shadow').velocity({opacity:0}, {duration:400, complete:function() {
+                $('#shadow').addClass("display-none");
+            }});
+          }
+          $('#shadow').css("z-index","500");
+
+          if (this.disableAnimation) {
+              this.$('.hotgrid-popup').css("display", "none");
+          } else {
+              this.$('.hotgrid-popup').velocity({ opacity: 0 }, {duration:400, complete: _.bind(function() {
+                  this.$('.hotgrid-popup').css("display", "none");
+              }, this)});
+          }
+
+          Adapt.trigger('popup:closed',  this.$('.hotgrid-popup'));
+
+          $('body').scrollEnable();
+
+          ///// Audio /////
+          if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
+              Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
+          }
+          ///// End of Audio /////
+
+          this.$('.hotgrid-grid-item.active').removeClass('active');
+
+          this.$('.hotgrid-popup-back').css('visibility','hidden');
+          this.$('.hotgrid-popup-next').css('visibility','hidden');
+
+          this.evaluateCompletion();
+
+          $('#shadow').off('click');
+
+          this.isPopupOpen = false;
+
         },
 
-        updateNotifyNav: function (index) {
-            // Hide buttons
-            if(index === 0) {
-                $('#notify-arrow-back').css('visibility','hidden');
-                $('notify-popup-arrow-l').css('visibility','hidden');
-            }
-            if(index === (this.model.get('_items').length)-1) {
-                $('#notify-arrow-next').css('visibility','hidden');
-                $('notify-popup-arrow-r').css('visibility','hidden');
-            }
-            // Show buttons
-            if(index > 0) {
-                $('#notify-arrow-back').css('visibility','visible');
-                $('notify-popup-arrow-l').css('visibility','visible');
-            }
-            if(index < (this.model.get('_items').length)-1) {
-                $('#notify-arrow-next').css('visibility','visible');
-                $('notify-popup-arrow-r').css('visibility','visible');
-            }
+        resizePopup: function() {
+            var windowHeight = $(window).height();
+            var popupHeight = this.$('.hotgrid-popup').outerHeight();
 
-            // Add listerner to notify nav arrows
-            $('.notify-popup-arrow-l').on('click', _.bind(this.previousItem, this));
-            $('.notify-popup-arrow-r').on('click', _.bind(this.nextItem, this));
-            //
+            if (popupHeight > windowHeight) {
+              this.$('.hotgrid-popup').addClass('small');
+              this.$('.hotgrid-popup').css({
+                'margin-top': 0
+              });
+            } else {
+              this.$('.hotgrid-popup').addClass('large');
+              this.$('.hotgrid-popup').css({
+                'margin-top': -(popupHeight/2)
+              });
+            }
         },
 
-        closeNotify: function() {
-            this.evaluateCompletion();
-
-            $('.notify-popup-arrow-l').off('click');
-            $('.notify-popup-arrow-r').off('click');
-
-            componentActive = false;
+        resetPopup: function() {
+          if(this.isPopupOpen) {
+            this.$('.hotgrid-popup').removeClass('large');
+            this.$('.hotgrid-popup').removeClass('small');
+            this.resizePopup();
+          }
         },
+
+      setupEscapeKey: function() {
+          var hasAccessibility = Adapt.config.has('_accessibility') && Adapt.config.get('_accessibility')._isActive;
+
+          if (!hasAccessibility && this.isPopupOpen) {
+              $(window).on("keyup", this.onKeyUp);
+          } else {
+              $(window).off("keyup", this.onKeyUp);
+          }
+      },
+
+      onAccessibilityToggle: function() {
+          this.setupEscapeKey();
+      },
+
+      onKeyUp: function(event) {
+          if (event.which != 27) return;
+          event.preventDefault();
+          this.closePopup();
+      },
 
         // Reduced text
         replaceText: function(value) {
