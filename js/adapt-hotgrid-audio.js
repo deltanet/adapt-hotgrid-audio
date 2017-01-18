@@ -335,11 +335,11 @@ define(function(require) {
                 // Change each items title and body
                 for (var i = 0; i < this.model.get('_items').length; i++) {
                     if(value == 0) {
-                        this.$('.notify-popup-title-inner').eq(i).html(this.model.get('_items')[i].title);
-                        this.$('.notify-popup-body-inner').eq(i).html(this.model.get('_items')[i].body).a11y_text();
+                        this.$('.hotgrid-popup-title-inner').eq(i).html(this.model.get('_items')[i].title);
+                        this.$('.hotgrid-popup-body-inner').eq(i).html(this.model.get('_items')[i].body).a11y_text();
                     } else {
-                        this.$('.notify-popup-title-inner').eq(i).html(this.model.get('_items')[i].titleReduced);
-                        this.$('.notify-popup-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced).a11y_text();
+                        this.$('.hotgrid-popup-title-inner').eq(i).html(this.model.get('_items')[i].titleReduced);
+                        this.$('.hotgrid-popup-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced).a11y_text();
                     }
                 }
             }
