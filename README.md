@@ -51,7 +51,7 @@ Hotgrid automatically switches to 2 columns in mobile mode for the best user exp
 
 
 ----------------------------
-**Version number:**  2.0.16  
+**Version number:**  2.0.17  
 **Framework versions:**  2.0     
 **Author / maintainer:**   
 **Accessibility support:** WAI AA   
