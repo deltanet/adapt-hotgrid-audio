@@ -42,7 +42,7 @@
     },
     "_columns": {
       "type":"number",
-      "required":true,
+      "required": true,
       "title": "Columns",
       "inputType": "Number",
       "default": 3,
@@ -51,16 +51,16 @@
     },
     "_canCycleThroughPagination": {
       "type":"boolean",
-      "required":true,
+      "required": true,
       "default": true,
       "title": "Item pagination",
-      "inputType": { "type": "Boolean", "options": [false, true]},
+      "inputType": "Checkbox",
       "validators": [],
-      "help": "If set to 'true', learner can cycle through items"
+      "help": "If enabled, the learner can cycle through items."
     },
     "_items": {
       "type":"array",
-      "required":true,
+      "required": true,
       "title": "Items",
       "items": {
         "type":"object",
@@ -68,7 +68,7 @@
         "properties":{
           "title": {
             "type":"string",
-            "required":false,
+            "required": false,
             "default": "",
             "title": "Item Popup Title",
             "inputType": "Text",
@@ -78,7 +78,7 @@
           },
           "titleReduced": {
             "type":"string",
-            "required":false,
+            "required": false,
             "default": "",
             "title": "Item Popup Title - Reduced Text",
             "inputType": "Text",
@@ -88,7 +88,7 @@
           },
           "body": {
             "type":"string",
-            "required":false,
+            "required": false,
             "default": "",
             "title": "Item Popup Body",
             "inputType": "TextArea",
@@ -98,7 +98,7 @@
           },
           "bodyReduced": {
             "type":"string",
-            "required":false,
+            "required": false,
             "default": "",
             "title": "Item Popup Body - Reduced Text",
             "inputType": "TextArea",
@@ -108,12 +108,12 @@
           },
           "_graphic": {
             "type":"object",
-            "required":true,
+            "required": true,
             "title": "Button Graphic",
             "properties":{
               "src": {
                 "type":"string",
-                "required":true,
+                "required": true,
                 "default": "",
                 "inputType": "Asset:image",
                 "validators": ["required"],
@@ -121,7 +121,7 @@
               },
               "srcHover": {
                 "type":"string",
-                "required":false,
+                "required": false,
                 "default": "",
                 "inputType": "Asset:image",
                 "validators": [],
@@ -129,7 +129,7 @@
               },
               "srcVisited": {
                 "type":"string",
-                "required":false,
+                "required": false,
                 "default": "",
                 "inputType": "Asset:image",
                 "validators": [],
@@ -137,7 +137,7 @@
               },
               "alt": {
                 "type":"string",
-                "required":false,
+                "required": false,
                 "default": "",
                 "title": "Item alt text",
                 "inputType": "Text",
@@ -147,7 +147,7 @@
               },
               "title": {
                 "type":"string",
-                "required":false,
+                "required": false,
                 "default": "",
                 "title": "Item Title",
                 "inputType": "Text",
@@ -159,19 +159,19 @@
           },
           "_itemGraphic": {
             "type":"object",
-            "required":false,
+            "required": false,
             "title": "Popup Graphic",
             "properties":{
               "src": {
                 "type":"string",
-                "required":false,
+                "required": false,
                 "default": "",
                 "inputType": "Asset:image",
                 "validators": []
               },
               "alt": {
                 "type":"string",
-                "required":false,
+                "required": false,
                 "default": "",
                 "title": "Item alt text",
                 "inputType": "Text",
