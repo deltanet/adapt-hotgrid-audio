@@ -30,16 +30,18 @@
                 </div>
               </div>
               {{/if}}
+              {{#if body}}
+                <div class="hotgrid-popup-body">
+                  <div class="hotgrid-popup-body-inner">
+                    {{{a11y_text body}}}
+                  </div>
+                </div>
+              {{/if}}
               {{#if _itemGraphic}}
                 <div class="hotgrid-popup-graphic">
                   <div class="hotgrid-popup-graphic-inner">
                     <img src="{{_itemGraphic.src}}" aria-label="{{_itemGraphic.alt}}" tabindex="0"/>
                   </div>
-                </div>
-              {{/if}}
-              {{#if body}}
-                <div class="hotgrid-popup-body">
-                  <div class="hotgrid-popup-body-inner">{{{a11y_text body}}}</div>
                 </div>
               {{/if}}
             </div>
