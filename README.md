@@ -49,9 +49,8 @@ Hotgrid has a dynamic layout system. If you have 5 items but set the columns to 
 
 Hotgrid automatically switches to 2 columns in mobile mode for the best user experience however this can be overridden in the css.
 
-
 ----------------------------
-**Version number:**  2.0.18  
+**Version number:**  2.1.0  
 **Framework versions:**  2.0     
 **Author / maintainer:**   
 **Accessibility support:** WAI AA   
