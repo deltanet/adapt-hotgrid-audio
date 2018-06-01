@@ -12,7 +12,9 @@
               <img src="{{_graphic.srcVisited}}" class="hotgrid-item-image-visited"/>
             {{/if}}
           </button>
-          <div class="hotgrid-item-title">{{_graphic.title}}</div>
+          {{#if _graphic.title}}
+            <div class="hotgrid-item-title">{{_graphic.title}}</div>
+          {{/if}}
         </div>
         {{/each}}
       </div>

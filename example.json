@@ -11,6 +11,8 @@
         "instruction":"",
         "close":"Close",
         "_columns":3,
+        "_showItemBorders": true,
+        "_showItemTitleBackground": false,
         "_canCycleThroughPagination": true,
         "_items": [
             {

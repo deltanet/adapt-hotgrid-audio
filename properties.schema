@@ -58,6 +58,24 @@
       "validators": [],
       "help": "If enabled, the learner can cycle through items."
     },
+    "_showItemBorders": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "title": "Show Item Border",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "If enabled, each item will have a border."
+    },
+    "_showItemTitleBackground": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "title": "Show Item Title Background",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "If enabled, a background colour will be applied to the item titles."
+    },
     "_items": {
       "type":"array",
       "required": true,

@@ -74,6 +74,7 @@
 
 	.hotgrid-item-title {
 		font-size: @body-text-font-size;
+		padding: @component-padding/2;
 	}
 
 	.hotgrid-popup {
@@ -269,4 +270,32 @@
 				left: 0;
 			}
 		}
+
+		&.no-borders {
+			.hotgrid-item-image {
+				border: none !important;
+				&.hotgrid-item-states-image {
+					.no-touch & {
+						&:hover {
+							border: none !important;
+						}
+					}
+				}
+			}
+			.hotgrid-grid-item {
+				&.visited {
+					.hotgrid-item-states-image {
+						border: none !important;
+					}
+				}
+			}
+		}
+
+		&.item-titles {
+	    .hotgrid-item-title {
+				color: @primary-color-inverted;
+	      background-color: @primary-color;
+	      font-weight: @font-weight-bold;
+	    }
+	  }
 }
