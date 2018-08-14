@@ -28,14 +28,14 @@
               {{#if title}}
               <div class="hotgrid-popup-title">
                 <div class="hotgrid-popup-title-inner h5" tabindex="0" role="heading" aria-level="1">
-                  {{{title}}}
+                  {{{compile title}}}
                 </div>
               </div>
               {{/if}}
               {{#if body}}
                 <div class="hotgrid-popup-body">
                   <div class="hotgrid-popup-body-inner">
-                    {{{a11y_text body}}}
+                    {{{compile_a11y_text body}}}
                   </div>
                 </div>
               {{/if}}
