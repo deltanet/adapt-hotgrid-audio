@@ -26,6 +26,10 @@
     }
 
 		&.visited {
+			.hotgrid-item-states-css {
+				border: 3px solid @item-color-visited;
+			}
+
 			.hotgrid-item-states-image {
 				> img {
     			display: none;
@@ -47,6 +51,20 @@
 		img {
 			display: block;
 			transition: all 0.25s;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.no-touch & {
+			&:hover {
+				&.hotgrid-item-states-css {
+					border: 3px solid @item-color-hover;
+				}
+			}
+		}
+
+		&.hotgrid-item-states-css {
+			border: 3px solid @item-color;
 		}
 
 		&.hotgrid-item-states-image {
@@ -74,6 +92,7 @@
 
 	.hotgrid-item-title {
 		text-align: center;
+		color: @font-color;
 		font-size: @body-text-font-size;
 		padding: @component-padding/2;
 	}
@@ -293,10 +312,30 @@
 		}
 
 		&.item-titles {
-	    .hotgrid-item-title {
-				color: @primary-color-inverted;
-	      background-color: @primary-color;
-	      font-weight: @font-weight-bold;
-	    }
+			.hotgrid-item-image {
+				.hotgrid-item-title {
+					color: @item-text-color;
+		      background-color: @item-color;
+		      font-weight: @font-weight-bold;
+		    }
+
+				.no-touch & {
+					&:hover {
+						.hotgrid-item-title {
+							color: @item-text-color-hover;
+							background-color: @item-color-hover;
+						}
+					}
+				}
+			}
+
+			.hotgrid-grid-item {
+				&.visited {
+					.hotgrid-item-title {
+						color: @item-text-color-visited;
+						background-color: @item-color-visited;
+					}
+				}
+			}
 	  }
 }
