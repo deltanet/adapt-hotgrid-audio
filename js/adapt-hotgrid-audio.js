@@ -71,12 +71,14 @@ define(function(require) {
 
         setUpColumns: function() {
           var columns = this.model.get('_columns');
-          var itemWidth = Math.floor(98 / columns) - columns;
+
+          // Minus 2 to take into account the padding of 1% each side
+          var itemWidth = Math.floor(100 / columns) - 2;
 
           if (columns && Adapt.device.screenSize === 'large') {
-            this.$('.hotgrid-grid-item').css('width', itemWidth + '%');
+            this.$('.hotgrid-grid-item').width(itemWidth + '%');
           } else {
-            this.$('.hotgrid-grid-item').css('width', '100%');
+            this.$('.hotgrid-grid-item').width('48%');
           }
         },
 
