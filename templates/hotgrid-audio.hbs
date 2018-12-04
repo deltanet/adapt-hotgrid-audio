@@ -42,7 +42,7 @@
               {{#if _itemGraphic}}
                 <div class="hotgrid-popup-graphic">
                   <div class="hotgrid-popup-graphic-inner">
-                    <img src="{{_itemGraphic.src}}" aria-label="{{_itemGraphic.alt}}" tabindex="0"/>
+                    <img src="{{_itemGraphic.src}}"{{#if _itemGraphic.alt}} aria-label="{{_itemGraphic.alt}}" tabindex="0"{{else}} class="a11y-ignore" aria-hidden="true" tabindex="-1"{{/if}}/>
                   </div>
                 </div>
               {{/if}}

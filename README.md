@@ -54,7 +54,7 @@ Hotgrid has a dynamic layout system. If you have 5 items but set the columns to 
 Hotgrid automatically switches to 2 columns in small and medium device mode for the best user experience.
 
 ----------------------------
-**Version number:**  2.2.3  
+**Version number:**  2.2.4  
 **Framework versions:**  2.0     
 **Author / maintainer:**   
 **Accessibility support:** WAI AA   

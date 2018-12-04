@@ -166,6 +166,15 @@ define(function(require) {
 
             this.$('.item-'+activeItem).show();
 
+            // Update accessibility tabbing focus
+            if (itemModel.title != "") {
+              this.$('.item-'+activeItem).find('.hotgrid-popup-title-inner').a11y_focus();
+            } else if (itemModel.body != "") {
+              this.$('.item-'+activeItem).find('.hotgrid-popup-body-inner').a11y_focus();
+            } else if (itemModel._graphic.alt != "") {
+              this.$('.item-'+activeItem).find('img').a11y_focus();
+            }
+
             ///// Audio /////
             if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
               // Reset onscreen id
