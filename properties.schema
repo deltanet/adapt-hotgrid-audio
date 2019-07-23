@@ -1,5 +1,5 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
   "$ref": "http://localhost/plugins/content/component/model.schema",
@@ -7,9 +7,17 @@
     "ariaRegion": {
       "type": "string",
       "required": true,
-      "default": "This component contains selectable grid items. Select an item to trigger a popup that includes an image with display text. Select the close button to close the popup.",
+      "default": "Selectable image component. Select each item to show more information.",
+      "inputType": "Text",
+      "validators": []
+    },
+    "popupPagination": {
+      "type": "string",
+      "required": true,
+      "default": "{{itemNumber}} / {{totalItems}}",
       "inputType": "Text",
       "validators": [],
+      "help": "This is the aria label for each item. Use {{itemNumber}} and {{totalItems}} in your text to tell the user which item they are viewing and how many items there are in total.",
       "translatable": true
     }
   },
@@ -18,7 +26,7 @@
       "type": "string",
       "required": true,
       "enum": ["full-width", "half-width", "both"],
-      "default": "half-width",
+      "default": "full-width",
       "editorOnly": true
     },
     "instruction": {
@@ -27,7 +35,6 @@
       "default": "",
       "inputType": "Text",
       "validators": [],
-      "help": "This is the instruction text",
       "translatable": true
     },
     "close": {
@@ -41,7 +48,7 @@
       "translatable": true
     },
     "_columns": {
-      "type":"number",
+      "type": "number",
       "required": true,
       "title": "Columns",
       "inputType": "Number",
@@ -50,7 +57,7 @@
       "help": "This value determines the number of columns within the grid. Any number of columns can be set however keep in mind the more columns there are the smaller the items will be."
     },
     "_canCycleThroughPagination": {
-      "type":"boolean",
+      "type": "boolean",
       "required": true,
       "default": true,
       "title": "Item pagination",
@@ -77,15 +84,15 @@
       "help": "If enabled, a background colour will be applied to the item titles."
     },
     "_items": {
-      "type":"array",
+      "type": "array",
       "required": true,
       "title": "Items",
       "items": {
-        "type":"object",
-        "required":true,
-        "properties":{
+        "type": "object",
+        "required": true,
+        "properties": {
           "title": {
-            "type":"string",
+            "type": "string",
             "required": false,
             "default": "",
             "title": "Item Popup Title",
@@ -95,7 +102,7 @@
             "translatable": true
           },
           "titleReduced": {
-            "type":"string",
+            "type": "string",
             "required": false,
             "default": "",
             "title": "Item Popup Title - Reduced Text",
@@ -105,7 +112,7 @@
             "translatable": true
           },
           "body": {
-            "type":"string",
+            "type": "string",
             "required": false,
             "default": "",
             "title": "Item Popup Body",
@@ -115,7 +122,7 @@
             "translatable": true
           },
           "bodyReduced": {
-            "type":"string",
+            "type": "string",
             "required": false,
             "default": "",
             "title": "Item Popup Body - Reduced Text",
@@ -125,12 +132,12 @@
             "translatable": true
           },
           "_graphic": {
-            "type":"object",
+            "type": "object",
             "required": true,
             "title": "Button Graphic",
             "properties":{
               "src": {
-                "type":"string",
+                "type": "string",
                 "required": true,
                 "default": "",
                 "inputType": "Asset:image",
@@ -138,7 +145,7 @@
                 "help": "The item image (default state)."
               },
               "srcHover": {
-                "type":"string",
+                "type": "string",
                 "required": false,
                 "default": "",
                 "inputType": "Asset:image",
@@ -146,7 +153,7 @@
                 "help": "The item image (hover state)."
               },
               "srcVisited": {
-                "type":"string",
+                "type": "string",
                 "required": false,
                 "default": "",
                 "inputType": "Asset:image",
@@ -154,7 +161,7 @@
                 "help": "The item image (visited state)."
               },
               "alt": {
-                "type":"string",
+                "type": "string",
                 "required": false,
                 "default": "",
                 "title": "Item alt text",
@@ -164,31 +171,31 @@
                 "translatable": true
               },
               "title": {
-                "type":"string",
+                "type": "string",
                 "required": false,
                 "default": "",
                 "title": "Item Title",
                 "inputType": "Text",
                 "validators": [],
-                "help": "This is optional text which is displayed under the grid item image.",
+                "help": "Optional image title, displayed under the grid item image.",
                 "translatable": true
               }
             }
           },
           "_itemGraphic": {
-            "type":"object",
-            "required": false,
+            "type": "object",
+            "required": true,
             "title": "Popup Graphic",
-            "properties":{
+            "properties": {
               "src": {
-                "type":"string",
+                "type": "string",
                 "required": false,
                 "default": "",
                 "inputType": "Asset:image",
                 "validators": []
               },
               "alt": {
-                "type":"string",
+                "type": "string",
                 "required": false,
                 "default": "",
                 "title": "Item alt text",
