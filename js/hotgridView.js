@@ -22,6 +22,21 @@ define([
         setUpViewData: function() {
             this.popupView = null;
             this._isPopupOpen = false;
+
+            var items = this.model.get('_items');
+            _.each(items, function(item) {
+                if (item._graphic.srcHover && item._graphic.srcVisited) {
+                    item._graphic.hasImageStates = true;
+                }
+            }, this);
+
+            if (this.model.get('_showItemBorders') === false) {
+              this.$el.addClass('no-borders');
+            }
+
+            if (this.model.get('_showItemTitleBackground')) {
+              this.$el.addClass('item-titles');
+            }
         },
 
         setUpModelData: function() {
@@ -69,8 +84,13 @@ define([
         setUpColumns: function() {
             var columns = this.model.get('_columns');
 
+            // Minus 2 to take into account the padding of 1% each side
+            var itemWidth = Math.floor(100 / columns) - 2;
+
             if (columns && Adapt.device.screenSize === 'large') {
-                this.$('.hotgrid-grid-item').css('width', (100 / columns) + '%');
+              this.$('.hotgrid-grid-item').width(itemWidth + '%');
+            } else {
+              this.$('.hotgrid-grid-item').width('48%');
             }
         },
 
@@ -111,6 +131,8 @@ define([
 
             this._isPopupOpen = true;
 
+            Adapt.trigger('audio:stopAllChannels');
+
             this.popupView = new HotgridPopupView({
                 model: this.model
             });
@@ -120,7 +142,7 @@ define([
                 _isCancellable: true,
                 _showCloseButton: false,
                 _closeOnBackdrop: true,
-                _classes: 'hotgrid'
+                _classes: 'hotgrid-audio-popup'
             })
 
             this.listenToOnce(Adapt, {

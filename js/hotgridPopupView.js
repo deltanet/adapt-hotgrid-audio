@@ -5,10 +5,10 @@ define([
 
     var HotgridPopupView = Backbone.View.extend({
 
-        className: 'hotgrid-popup',
+        className: 'hotgrid-audio-popup-content',
 
         events: {
-            'click .hotgrid-popup-done': 'closePopup',
+            'click .hotgrid-close-button': 'closePopup',
             'click .hotgrid-popup-controls': 'onControlClick'
         },
 
@@ -23,16 +23,16 @@ define([
 
         onOpened: function() {
             this.applyNavigationClasses(this.model.getActiveItem().get('_index'));
-            this.updatePageCount();
             this.handleTabs();
+            this.playAudio(this.model.getActiveItem().get('_index'));
         },
 
         applyNavigationClasses: function (index) {
             var itemCount = this.model.get('_items').length;
             var canCycleThroughPagination = this.model.get('_canCycleThroughPagination');
 
-            var shouldEnableBack = index > 0 || canCycleThroughPagination;
-            var shouldEnableNext = index < itemCount - 1 || canCycleThroughPagination;
+            var shouldEnableBack = index > 0 && canCycleThroughPagination;
+            var shouldEnableNext = index < itemCount - 1 && canCycleThroughPagination;
             var $controls = this.$('.hotgrid-popup-controls');
 
             this.$('hotgrid-popup-nav')
@@ -41,15 +41,6 @@ define([
 
             $controls.filter('.back').a11y_cntrl_enabled(shouldEnableBack);
             $controls.filter('.next').a11y_cntrl_enabled(shouldEnableNext);
-        },
-
-        updatePageCount: function() {
-            var template = Adapt.course.get('_globals')._components._hotgrid.popupPagination;
-            var labelText = Handlebars.compile(template || '')({
-                itemNumber: this.model.getActiveItem().get('_index') + 1,
-                totalItems: this.model.get('_items').length
-            });
-            this.$('.hotgrid-popup-count').html(labelText);
         },
 
         handleTabs: function() {
@@ -62,7 +53,6 @@ define([
 
             var index = item.get('_index');
             this.applyNavigationClasses(index);
-            this.updatePageCount();
             this.handleTabs();
             this.applyItemClasses(index);
             this.handleFocus();
@@ -105,6 +95,8 @@ define([
             if (index === -1) return;
 
             this.setItemState(index);
+
+            this.playAudio(index);
         },
 
         getNextIndex: function(direction) {
@@ -129,6 +121,15 @@ define([
             var nextItem = this.model.getItem(index);
             nextItem.toggleActive();
             nextItem.toggleVisited(true);
+        },
+
+        playAudio: function(index) {
+          var currentItem = this.model.getItem(index);
+
+          if (Adapt.audio && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+            Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
+            Adapt.trigger('audio:playAudio', currentItem.get('_audio').src, this.model.get('_id'), this.model.get('_audio')._channel);
+          }
         }
 
     });

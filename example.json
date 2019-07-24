@@ -32,7 +32,7 @@
                     "alt": "alt text"
                 },
                 "_audio": {
-                    "src": "course/en/audio/***.mp3"
+                    "src": ""
                 }
             },
             {
@@ -52,7 +52,7 @@
                     "alt": "alt text"
                 },
                 "_audio": {
-                    "src": "course/en/audio/***.mp3"
+                    "src": ""
                 }
             },
             {
@@ -70,6 +70,9 @@
                 "_itemGraphic": {
                     "src": "course/en/images/c-05-3.png",
                     "alt": "alt text"
+                },
+                "_audio": {
+                    "src": ""
                 }
             },
             {
@@ -87,7 +90,7 @@
                     "alt": "alt text"
                 },
                 "_audio": {
-                    "src": "course/en/audio/***.mp3"
+                    "src": ""
                 }
             },
             {
@@ -105,7 +108,7 @@
                     "alt": "alt text"
                 },
                 "_audio": {
-                    "src": "course/en/audio/***.mp3"
+                    "src": ""
                 }
             }
         ],
