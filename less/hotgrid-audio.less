@@ -39,14 +39,13 @@
       img.hotgrid-item-image-hover {
 				display: none;
 			}
-
 			img.hotgrid-item-image-visited {
 				display: none;
 			}
 
 			.no-touch &:hover {
-        > img {
-					display:none;
+        img.hotgrid-item-image-default {
+					display: none;
     		}
     		img.hotgrid-item-image-hover {
     			display: block;
@@ -55,19 +54,17 @@
     			display: none;
     		}
 			}
-		}
 
-		&.visited {
-			.hotgrid-item-states-image {
-				> img {
-    			display: none;
-    		}
-    		img.hotgrid-item-image-hover {
-    			display: none !important;
-    		}
-    		img.hotgrid-item-image-visited {
-    			display: block !important;
-    		}
+			&.visited {
+				img.hotgrid-item-image-default {
+	    		display: none !important;
+	    	}
+	    	img.hotgrid-item-image-hover {
+	    		display: none !important;
+	    	}
+	    	img.hotgrid-item-image-visited {
+	    		display: block !important;
+				}
 			}
 		}
 	}
@@ -91,28 +88,7 @@
 		padding: @component-padding/2;
 	}
 
-	&.no-borders {
-		.hotgrid-item-image {
-			border: none !important;
-			&.hotgrid-item-states-image {
-				.no-touch & {
-					&:hover {
-						border: none !important;
-					}
-				}
-			}
-		}
-		.hotgrid-grid-item {
-			&.visited {
-				.hotgrid-item-states-image {
-					border: none !important;
-				}
-			}
-		}
-	}
-
 	&.item-titles {
-
 		.hotgrid-grid-item {
 			.hotgrid-item-title {
 				color: @item-text-color;

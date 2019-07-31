@@ -30,10 +30,6 @@ define([
                 }
             }, this);
 
-            if (this.model.get('_showItemBorders') === false) {
-              this.$el.addClass('no-borders');
-            }
-
             if (this.model.get('_showItemTitleBackground')) {
               this.$el.addClass('item-titles');
             }

@@ -26,8 +26,6 @@ The attributes listed below are used in *components.json* to configure **Hotgrid
 
 **_canCycleThroughPagination** (boolean): If set to 'true', learner can cycle through items.  
 
-**_showItemBorders** (boolean): If set to 'true', a border around the items will be shown.  
-
 **_showItemTitleBackground** (boolean): If set to 'true', the item titles will have a background colour applied to them.  
 
 **Hotgrid Audio** has a dynamic layout system. If you have 5 items but set the columns to 3, 3 items will be put in the first row and 2 on the second. The second row then will be automatically centered. This works with any amount of items and columns - ie that last row will always be centred for you.
