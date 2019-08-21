@@ -2,9 +2,9 @@
     {{#each _items}}
     <div class="hotgrid-item component-item clearfix {{#if _isVisited}}visited{{/if}} {{#if _isActive}}active{{/if}} {{_classes}}" data-index={{@index}}>
         {{#if title}}
-        <div id="notify-heading" class="notify-popup-title">
-            <div class="notify-popup-title-inner h5" role="heading" aria-level="1">
-                {{{compile title}}}
+        <div{{#if _isActive}} id="notify-heading"{{/if}} class="notify-popup-title" {{a11y_attrs_heading 'notify'}}>
+            <div class="notify-popup-title-inner">
+                {{{title}}}
             </div>
         </div>
         {{/if}}
@@ -20,6 +20,9 @@
             <div class="hotgrid-popup-graphic-inner">
                 <img src="{{_itemGraphic.src}}" {{#if _itemGraphic.alt}}aria-label="{{_itemGraphic.alt}}"{{else}}aria-hidden="true"{{/if}}/>
             </div>
+            {{#if _graphic.attribution}}
+            <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
+            {{/if}}
         </div>
         {{/if}}
     </div>

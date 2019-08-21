@@ -80,13 +80,8 @@ define([
         setUpColumns: function() {
             var columns = this.model.get('_columns');
 
-            // Minus 2 to take into account the padding of 1% each side
-            var itemWidth = Math.floor(100 / columns) - 2;
-
             if (columns && Adapt.device.screenSize === 'large') {
-              this.$('.hotgrid-grid-item').width(itemWidth + '%');
-            } else {
-              this.$('.hotgrid-grid-item').width('48%');
+                this.$('.hotgrid-grid-listitem').css('width', (100 / columns) + '%');
             }
         },
 
@@ -105,8 +100,8 @@ define([
 
             // Append the word 'visited' to the item's aria-label
             var visitedLabel = this.model.get('_globals')._accessibility._ariaLabels.visited + '.';
-            $item.attr('aria-label', function(index, val) {
-                return val + ' ' + visitedLabel;
+            $item.find('.aria-label').each(function(index, ariaLabel) {
+                ariaLabel.innerHTML += ' ' + visitedLabel;
             });
 
             $item.addClass('visited');
