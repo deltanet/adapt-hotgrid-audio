@@ -1,0 +1,44 @@
+<div class="hotgrid-popup-inner clearfix">
+    {{#each _items}}
+    <div class="hotgrid-item component-item clearfix {{#if _isVisited}}visited{{/if}} {{#if _isActive}}active{{/if}} {{_classes}}" data-index={{@index}}>
+        {{#if title}}
+        <div{{#if _isActive}} id="notify-heading"{{/if}} class="notify-popup-title" {{a11y_attrs_heading 'notify'}}>
+            <div class="notify-popup-title-inner">
+                {{{title}}}
+            </div>
+        </div>
+        {{/if}}
+        {{#if body}}
+        <div class="hotgrid-popup-body{{#unless _itemGraphic}} fullwidth{{/unless}}">
+            <div class="hotgrid-popup-body-inner">
+              {{{compile body}}}
+            </div>
+        </div>
+        {{/if}}
+        {{#if _itemGraphic}}
+        <div class="hotgrid-popup-graphic{{#unless body}} fullwidth{{/unless}}">
+            <div class="hotgrid-popup-graphic-inner">
+                <img src="{{_itemGraphic.src}}" {{#if _itemGraphic.alt}}aria-label="{{_itemGraphic.alt}}"{{else}}aria-hidden="true"{{/if}}/>
+            </div>
+            {{#if _graphic.attribution}}
+            <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+    {{/each}}
+    {{#if _canCycleThroughPagination}}
+    <div class="hotgrid-popup-nav">
+        <button class="base hotgrid-popup-controls back" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
+            <div class="icon icon-controls-left"></div>
+        </button>
+        <button class="base hotgrid-popup-controls next" aria-label="{{_globals._accessibility._ariaLabels.next}}">
+            <div class="icon icon-controls-right"></div>
+        </button>
+    </div>
+    {{/if}}
+</div>
+<div class="notify-popup-buttons">
+    <button class="notify-popup-button hotgrid-close-button" aria-label="{{_globals._accessibility._ariaLabels.closePopup}}">{{{close}}}</button>
+</div>
+{{a11y_wrap_focus}}
