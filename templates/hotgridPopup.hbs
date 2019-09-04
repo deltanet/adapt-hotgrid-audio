@@ -9,13 +9,13 @@
         </div>
         {{/if}}
         {{#if body}}
-        <div class="hotgrid-popup-body{{#unless _itemGraphic}} fullwidth{{/unless}}">
+        <div class="hotgrid-popup-body{{#unless _itemGraphic.src}} fullwidth{{/unless}}">
             <div class="hotgrid-popup-body-inner">
               {{{compile body}}}
             </div>
         </div>
         {{/if}}
-        {{#if _itemGraphic}}
+        {{#if _itemGraphic.src}}
         <div class="hotgrid-popup-graphic{{#unless body}} fullwidth{{/unless}}">
             <div class="hotgrid-popup-graphic-inner">
                 <img src="{{_itemGraphic.src}}" {{#if _itemGraphic.alt}}aria-label="{{_itemGraphic.alt}}"{{else}}aria-hidden="true"{{/if}}/>
