@@ -1,6 +1,6 @@
-.hotgrid-audio-component {
+.hotgrid-audio {
 
-	.hotgrid-widget {
+	.hotgrid__widget {
 		// Font size set to 0 so there's no gap between items
 		font-size: 0;
 		position: relative;
@@ -11,7 +11,7 @@
 		display: flex;
 		flex-flow: wrap;
 		justify-content: center;
-		padding-top: @component-padding / 2;
+		padding-top: @item-title-margin / 2;
 	}
 
 	.hotgrid-grid-listitem {
@@ -35,9 +35,9 @@
 				}
 			}
 
-			&.visited {
+			&.is-visited {
 				.hotgrid-item-image {
-					border: 3px solid @item-color-visited;
+					border: 3px solid @item-color;
 				}
 			}
 		}
@@ -62,7 +62,7 @@
     		}
 			}
 
-			&.visited {
+			&.is-visited {
 				img.hotgrid-item-image-default {
 	    		display: none !important;
 	    	}
@@ -92,14 +92,14 @@
 	.hotgrid-item-title {
 		text-align: center;
 		color: @font-color;
-		font-size: @body-text-font-size;
-		padding: @component-padding/2;
+		font-weight: @font-weight-bold;
+		padding: @item-title-margin/2;
 	}
 
 	&.item-titles {
 		.hotgrid-grid-item {
 			.hotgrid-item-title {
-				color: @item-text-color;
+				color: @item-color-inverted;
 				background-color: @item-color;
 				font-weight: @font-weight-bold;
 			}
@@ -107,16 +107,16 @@
 			.no-touch & {
 				&:hover {
 					.hotgrid-item-title {
-						color: @item-text-color-hover;
+						color: @item-color-inverted-hover;
 						background-color: @item-color-hover;
 					}
 				}
 			}
 
-			&.visited {
+			&.is-visited {
 				.hotgrid-item-title {
-					color: @item-text-color-visited;
-					background-color: @item-color-visited;
+					color: @item-color-inverted;
+					background-color: @item-color;
 				}
 			}
 		}
@@ -130,17 +130,26 @@
 	}
 
 	.notify-popup-title {
+		font-weight: @font-weight-bold !important;
     text-align: center;
     padding-right: 0 !important;
   }
 
 	.notify-popup-buttons {
+		text-align: center;
 		margin-top: 0 !important;
 	}
 
+	.hotgrid-close-button {
+		height: (@icon-size*2);
+		background-color: @notify-btn;
+		color: @notify-btn-inverted;
+		padding: 0 @notify-padding-hoz;
+	}
+
 	.hotgrid-popup-body {
-		padding-bottom: @notify-padding-bottom;
-		font-size: @body-text-font-size;
+		padding-bottom: @notify-padding-ver;
+		font-weight: @font-weight-regular;
 		float: left;
 		text-align: left;
 		.dir-rtl & {
@@ -152,7 +161,7 @@
 
 		@media (max-width: @device-width-medium) {
 			width: 100%;
-			padding-bottom: (@notify-padding-bottom / 3);
+			padding-bottom: (@notify-padding-ver / 3);
 		}
 
 		&.fullwidth {
@@ -162,7 +171,7 @@
 
 	.hotgrid-popup-graphic {
 		float: right;
-		padding-bottom: @button-padding-bottom;
+		padding-bottom:@btn-padding;
 		width: 38%;
 		margin-left: 2%;
 
@@ -195,7 +204,7 @@
 	}
 
 	.hotgrid-popup-nav {
-		margin-top: @button-margin-top;
+		margin-top: @notify-padding-ver;
 		clear: both;
 	}
 
@@ -205,21 +214,22 @@
 	  height: (@icon-size*2);
 	  position: absolute;
 	  text-decoration: none;
-	  background-color: @notify-button-color;
+	  background-color: @notify-btn;
+		margin: 0 @notify-padding-hoz;
 
 		.icon {
 			margin: (@icon-size/2);
-	    color: @notify-button-text-color;
+	    color: @notify-btn-inverted;
 		}
 
 	  .no-touch &:hover {
-			background-color: @notify-button-color-hover;
+			background-color: @notify-btn-hover;
 	    .icon {
-				color: @notify-button-text-color-hover;
+				color: @notify-btn-inverted-hover;
 	    }
 		}
 
-		&.disabled {
+		&.is-disabled {
 			visibility: hidden;
     }
 	}

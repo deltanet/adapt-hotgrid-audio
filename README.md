@@ -58,8 +58,8 @@ The attributes listed below are used in *components.json* to configure **Hotgrid
 Hotgrid automatically switches to 2 columns in small and medium device mode for the best user experience.
 
 ----------------------------
-**Version number:**  3.0.3  
-**Framework versions:**  4+     
+**Version number:**  4.0.0  
+**Framework versions:**  5+     
 **Author / maintainer:**   
 **Accessibility support:** WAI AA   
 **RTL support:** yes  
