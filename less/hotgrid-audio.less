@@ -23,6 +23,9 @@
 		text-align: center;
 		vertical-align: top;
 		width: 100%;
+		background-color: transparent;
+
+		.button-text;
 
 		&.hotgrid-item-states-css {
 			.hotgrid-item-image {
@@ -37,7 +40,7 @@
 
 			&.is-visited {
 				.hotgrid-item-image {
-					border: 3px solid @item-color;
+					border: 3px solid @visited;
 				}
 			}
 		}
@@ -115,8 +118,8 @@
 
 			&.is-visited {
 				.hotgrid-item-title {
-					color: @item-color-inverted;
-					background-color: @item-color;
+					color: @visited-inverted;
+					background-color: @visited;
 				}
 			}
 		}
@@ -125,53 +128,32 @@
 
 .hotgrid-audio-popup {
 
-	.hotgrid-item:not(.active) {
+	.hotgrid-item:not(.is-active) {
     display: none;
-	}
-
-	.notify-popup-title {
-		font-weight: @font-weight-bold !important;
-    text-align: center;
-    padding-right: 0 !important;
-  }
-
-	.notify-popup-buttons {
-		text-align: center;
-		margin-top: 0 !important;
-	}
-
-	.hotgrid-close-button {
-		height: (@icon-size*2);
-		background-color: @notify-btn;
-		color: @notify-btn-inverted;
-		padding: 0 @notify-padding-hoz;
 	}
 
 	.hotgrid-popup-body {
 		padding-bottom: @notify-padding-ver;
-		font-weight: @font-weight-regular;
+
 		float: left;
-		text-align: left;
 		.dir-rtl & {
 			float: right;
-			text-align: right;
 		}
+
 		width: 60%;
 		overflow: hidden;
 
 		@media (max-width: @device-width-medium) {
 			width: 100%;
-			padding-bottom: (@notify-padding-ver / 3);
 		}
 
-		&.fullwidth {
+		&.is-fullwidth {
 			width: 100%;
 		}
 	}
 
 	.hotgrid-popup-graphic {
 		float: right;
-		padding-bottom:@btn-padding;
 		width: 38%;
 		margin-left: 2%;
 
@@ -193,41 +175,35 @@
 			margin-right: auto;
 		}
 
-		&.fullwidth {
+		&.is-fullwidth {
 			width: 100%;
 			margin-left: 0px;
 		}
 
-		&.hidden {
+		&.is-hidden {
 			display: none;
 		}
 	}
 
 	.hotgrid-popup-nav {
-		margin-top: @notify-padding-ver;
+		position: relative;
+		margin-top: @btn-margin;
 		clear: both;
 	}
 
 	.hotgrid-popup-controls {
-		display: block;
-	  width: (@icon-size*2);
-	  height: (@icon-size*2);
-	  position: absolute;
-	  text-decoration: none;
-	  background-color: @notify-btn;
-		margin: 0 @notify-padding-hoz;
+		position: absolute;
+    border-radius: @btn-border-radius;
 
-		.icon {
-			margin: (@icon-size/2);
-	    color: @notify-btn-inverted;
-		}
+		padding: @btn-padding / 2;
+    background-color: @notify-icon;
+    color: @notify-icon-inverted;
 
-	  .no-touch &:hover {
-			background-color: @notify-btn-hover;
-	    .icon {
-				color: @notify-btn-inverted-hover;
-	    }
-		}
+    .no-touch &:hover {
+      background-color: @notify-icon-hover;
+      color: @notify-icon-inverted-hover;
+      .transition(background-color @duration ease-in, color @duration ease-in;);
+    }
 
 		&.is-disabled {
 			visibility: hidden;

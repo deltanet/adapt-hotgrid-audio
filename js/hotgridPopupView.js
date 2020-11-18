@@ -8,8 +8,8 @@ define([
         className: 'hotgrid-audio-popup',
 
         events: {
-            'click .hotgrid-close-button': 'closePopup',
-            'click .hotgrid-popup-controls': 'onControlClick'
+            'click .js-hotgrid-close-btn': 'closePopup',
+            'click .js-hotgrid-popup-controls': 'onControlClick'
         },
 
         initialize: function() {
