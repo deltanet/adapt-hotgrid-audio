@@ -133,7 +133,7 @@ define([
                 _isCancellable: true,
                 _showCloseButton: false,
                 _closeOnBackdrop: true,
-                _classes: 'hotgrid-audio-popup'
+                _classes: this.model.get('_classes')+' hotgrid-audio-popup'
             });
 
             this.listenToOnce(Adapt, {
