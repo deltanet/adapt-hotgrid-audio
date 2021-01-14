@@ -1,6 +1,6 @@
-.hotgrid-audio {
+.hotgrid-audio-component {
 
-	.hotgrid__widget {
+	.hotgrid-widget {
 		// Font size set to 0 so there's no gap between items
 		font-size: 0;
 		position: relative;
@@ -11,7 +11,7 @@
 		display: flex;
 		flex-flow: wrap;
 		justify-content: center;
-		padding-top: @item-title-margin / 2;
+		padding-top: @component-padding / 2;
 	}
 
 	.hotgrid-grid-listitem {
@@ -23,9 +23,6 @@
 		text-align: center;
 		vertical-align: top;
 		width: 100%;
-		background-color: transparent;
-
-		.button-text;
 
 		&.hotgrid-item-states-css {
 			.hotgrid-item-image {
@@ -38,9 +35,9 @@
 				}
 			}
 
-			&.is-visited {
+			&.visited {
 				.hotgrid-item-image {
-					border: 3px solid @visited;
+					border: 3px solid @item-color-visited;
 				}
 			}
 		}
@@ -65,7 +62,7 @@
     		}
 			}
 
-			&.is-visited {
+			&.visited {
 				img.hotgrid-item-image-default {
 	    		display: none !important;
 	    	}
@@ -95,14 +92,14 @@
 	.hotgrid-item-title {
 		text-align: center;
 		color: @font-color;
-		font-weight: @font-weight-bold;
-		padding: @item-title-margin/2;
+		font-size: @body-text-font-size;
+		padding: @component-padding/2;
 	}
 
 	&.item-titles {
 		.hotgrid-grid-item {
 			.hotgrid-item-title {
-				color: @item-color-inverted;
+				color: @item-text-color;
 				background-color: @item-color;
 				font-weight: @font-weight-bold;
 			}
@@ -110,16 +107,16 @@
 			.no-touch & {
 				&:hover {
 					.hotgrid-item-title {
-						color: @item-color-inverted-hover;
+						color: @item-text-color-hover;
 						background-color: @item-color-hover;
 					}
 				}
 			}
 
-			&.is-visited {
+			&.visited {
 				.hotgrid-item-title {
-					color: @visited-inverted;
-					background-color: @visited;
+					color: @item-text-color-visited;
+					background-color: @item-color-visited;
 				}
 			}
 		}
@@ -128,32 +125,44 @@
 
 .hotgrid-audio-popup {
 
-	.hotgrid-item:not(.is-active) {
+	.hotgrid-item:not(.active) {
     display: none;
 	}
 
-	.hotgrid-popup-body {
-		padding-bottom: @notify-padding-ver;
+	.notify-popup-title {
+    text-align: center;
+    padding-right: 0 !important;
+  }
 
+	.notify-popup-buttons {
+		margin-top: 0 !important;
+	}
+
+	.hotgrid-popup-body {
+		padding-bottom: @notify-padding-bottom;
+		font-size: @body-text-font-size;
 		float: left;
+		text-align: left;
 		.dir-rtl & {
 			float: right;
+			text-align: right;
 		}
-
 		width: 60%;
 		overflow: hidden;
 
 		@media (max-width: @device-width-medium) {
 			width: 100%;
+			padding-bottom: (@notify-padding-bottom / 3);
 		}
 
-		&.is-fullwidth {
+		&.fullwidth {
 			width: 100%;
 		}
 	}
 
 	.hotgrid-popup-graphic {
 		float: right;
+		padding-bottom: @button-padding-bottom;
 		width: 38%;
 		margin-left: 2%;
 
@@ -175,37 +184,42 @@
 			margin-right: auto;
 		}
 
-		&.is-fullwidth {
+		&.fullwidth {
 			width: 100%;
 			margin-left: 0px;
 		}
 
-		&.is-hidden {
+		&.hidden {
 			display: none;
 		}
 	}
 
 	.hotgrid-popup-nav {
-		position: relative;
-		margin-top: @btn-margin;
+		margin-top: @button-margin-top;
 		clear: both;
 	}
 
 	.hotgrid-popup-controls {
-		position: absolute;
-    border-radius: @btn-border-radius;
+		display: block;
+	  width: (@icon-size*2);
+	  height: (@icon-size*2);
+	  position: absolute;
+	  text-decoration: none;
+	  background-color: @notify-button-color;
 
-		padding: @btn-padding / 2;
-    background-color: @notify-icon;
-    color: @notify-icon-inverted;
+		.icon {
+			margin: (@icon-size/2);
+	    color: @notify-button-text-color;
+		}
 
-    .no-touch &:hover {
-      background-color: @notify-icon-hover;
-      color: @notify-icon-inverted-hover;
-      .transition(background-color @duration ease-in, color @duration ease-in;);
-    }
+	  .no-touch &:hover {
+			background-color: @notify-button-color-hover;
+	    .icon {
+				color: @notify-button-text-color-hover;
+	    }
+		}
 
-		&.is-disabled {
+		&.disabled {
 			visibility: hidden;
     }
 	}

@@ -8,8 +8,8 @@ define([
         className: 'hotgrid-audio-popup',
 
         events: {
-            'click .js-hotgrid-close-btn': 'closePopup',
-            'click .js-hotgrid-popup-controls': 'onControlClick'
+            'click .hotgrid-close-button': 'closePopup',
+            'click .hotgrid-popup-controls': 'onControlClick'
         },
 
         initialize: function() {
@@ -37,16 +37,17 @@ define([
             var shouldEnableNext = index < itemCount - 1 && canCycleThroughPagination;
             var $controls = this.$('.hotgrid-popup-controls');
 
-            this.$('hotgrid-popup-nav').filter('.back').toggleClass('is-disabled', shouldEnableBack);
-            this.$('hotgrid-popup-nav').filter('.next').toggleClass('is-disabled', shouldEnableNext);
+            this.$('hotgrid-popup-nav')
+                .toggleClass('first', !shouldEnableBack)
+                .toggleClass('last', !shouldEnableNext);
 
             $controls.filter('.back').a11y_cntrl_enabled(shouldEnableBack);
             $controls.filter('.next').a11y_cntrl_enabled(shouldEnableNext);
         },
 
         handleTabs: function() {
-            this.$('.hotgrid-item:not(.is-active) *').a11y_on(false);
-            this.$('.hotgrid-item.is-active *').a11y_on(true);
+            this.$('.hotgrid-item:not(.active) *').a11y_on(false);
+            this.$('.hotgrid-item.active *').a11y_on(true);
         },
 
         onItemsActiveChange: function(item, _isActive) {
@@ -58,14 +59,14 @@ define([
         },
 
         applyItemClasses: function(index) {
-            this.$('.hotgrid-item[data-index="' + index + '"]').addClass('is-active').removeAttr('aria-hidden');
+            this.$('.hotgrid-item[data-index="' + index + '"]').addClass('active').removeAttr('aria-hidden');
             this.$('.hotgrid-item[data-index="' + index + '"] .notify-popup-title').attr("id", "notify-heading");
-            this.$('.hotgrid-item:not([data-index="' + index + '"])').removeClass('is-active').attr('aria-hidden', 'true');
+            this.$('.hotgrid-item:not([data-index="' + index + '"])').removeClass('active').attr('aria-hidden', 'true');
             this.$('.hotgrid-item:not([data-index="' + index + '"]) .notify-popup-title').removeAttr("id");
         },
 
         handleFocus: function(index) {
-            this.$('.hotgrid-popup-inner .is-active').a11y_focus();
+            this.$('.hotgrid-popup-inner .active').a11y_focus();
             this.applyNavigationClasses(index);
         },
 
@@ -74,7 +75,7 @@ define([
 
             this.$('.hotgrid-item')
                 .filter('[data-index="' + item.get('_index') + '"]')
-                .addClass('is-visited');
+                .addClass('visited');
         },
 
         render: function() {

@@ -69,7 +69,7 @@ define([
 
         postRender: function() {
             this.setUpColumns();
-            this.$('.hotgrid__widget').imageready(this.setReadyStatus.bind(this));
+            this.$('.hotgrid-widget').imageready(this.setReadyStatus.bind(this));
         },
 
         resizeControl: function() {
@@ -86,7 +86,7 @@ define([
         },
 
         onItemsActiveChange: function(model, _isActive) {
-            this.getItemElement(model).toggleClass('is-active', _isActive);
+            this.getItemElement(model).toggleClass('active', _isActive);
         },
 
         getItemElement: function(model) {
@@ -104,7 +104,7 @@ define([
                 ariaLabel.innerHTML += ' ' + visitedLabel;
             });
 
-            $item.addClass('is-visited');
+            $item.addClass('visited');
         },
 
         onItemClicked: function(event) {
@@ -128,13 +128,13 @@ define([
                 model: this.model
             });
 
-            Adapt.notify.popup({
+            Adapt.trigger('notify:popup', {
                 _view: this.popupView,
                 _isCancellable: true,
                 _showCloseButton: false,
                 _closeOnBackdrop: true,
                 _classes: 'hotgrid-audio-popup'
-            });
+            })
 
             this.listenToOnce(Adapt, {
                 'popup:closed': this.onPopupClosed

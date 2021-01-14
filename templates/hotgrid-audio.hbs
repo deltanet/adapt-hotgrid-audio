@@ -1,11 +1,11 @@
-<div class="component__inner hotgrid__inner">
+<div class="component-inner hotgrid-inner">
   {{> component this}}
-  <div class="component__widget hotgrid__widget">
+  <div class="component-widget hotgrid-widget">
     <div role="list" class="hotgrid-grid">
-      <div class="hotgrid-grid-inner u-clearfix">
+      <div class="hotgrid-grid-inner clearfix">
         {{#each _items}}
         <div role="listitem" class="hotgrid-grid-listitem">
-          <button class="hotgrid-grid-item hotgrid-item-states-{{#all _graphic.srcHover _graphic.srcVisited}}image{{else}}css{{/all}}{{#if _isVisited}} is-visited{{/if}}" data-index="{{@index}}">
+          <button class="base hotgrid-grid-item hotgrid-item-states-{{#all _graphic.srcHover _graphic.srcVisited}}image{{else}}css{{/all}}{{#if _isVisited}} visited{{/if}}" data-index="{{@index}}">
 
             <span class="aria-label">
               {{#if _graphic.title}}{{_graphic.title}}{{else}}{{../_globals._accessibility._ariaLabels.item}} {{numbers @index}}{{/if}}.{{#if _graphic.alt}} {{_graphic.alt}}.{{/if}}
@@ -25,7 +25,6 @@
               </div>
               {{/if}}
             </div>
-
           </button>
         </div>
         {{/each}}
